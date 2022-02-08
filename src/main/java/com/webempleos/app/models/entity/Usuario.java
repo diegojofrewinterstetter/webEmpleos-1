@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -33,4 +34,6 @@ public class Usuario implements Serializable {
     private String educacion;
     private String descripcion;
 
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private List<Publicacion> publicaciones;
 }
