@@ -34,4 +34,5 @@ public class UsuarioServiceImpl implements UsuarioService {
     public void deleteById(Integer id) {
         usuarioRepository.deleteById(id);
     }
+
 }

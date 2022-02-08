@@ -14,4 +14,5 @@ public interface UsuarioService {
     void save(Usuario usuario);
 
     void deleteById(Integer id);
+
 }
