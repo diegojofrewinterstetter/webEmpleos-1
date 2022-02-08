@@ -28,6 +28,7 @@ public class Usuario implements Serializable {
     private String password;
     private String email;
     private boolean alta;
+    @Lob
     private Byte[] imagen;
     private String educacion;
     private String descripcion;
