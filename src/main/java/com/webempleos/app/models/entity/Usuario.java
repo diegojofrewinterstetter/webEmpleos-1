@@ -29,7 +29,7 @@ public class Usuario implements Serializable {
     private String email;
     private boolean alta;
     @Lob
-    private Byte[] imagen;
+    private byte[] imagen;
     private String educacion;
     private String descripcion;
 
