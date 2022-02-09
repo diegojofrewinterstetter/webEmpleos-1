@@ -29,6 +29,6 @@ public class Publicacion implements Serializable {
     private LocalDate fechaPublicacion;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "id_usuario", referencedColumnName = "publicaciones")
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id")
     private Usuario usuario;
 }
