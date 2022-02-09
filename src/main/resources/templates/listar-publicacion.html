@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Titulo
+                </th>
+                <th>
+                    Descripcion
+                </th>
+                <th>
+                    Imagen
+                </th>
+                <th>
+                    Disponibilidad Horaria
+                </th>
+                <th>
+                    Fecha de Publicacion
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="publicaciones : ${publicaciones}">
+                <td th:text="${publicacion.titulo}"></td>
+                <td th:text="${publicacion.descripcion}"></td>
+                <td th:text="${usuario.imagen}"></td>
+                <td th:text="${usuario.disponibilidad}"></td>
+                <td th:text="${usuario.fechaPublicacion}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
