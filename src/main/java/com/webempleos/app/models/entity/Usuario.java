@@ -34,6 +34,9 @@ public class Usuario implements Serializable {
     private String educacion;
     private String descripcion;
 
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToMany(cascade = {CascadeType.MERGE},mappedBy = "usuario")
     private List<Publicacion> publicaciones;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "id_habilidad")
+    private Habilidad habilidad;
 }
