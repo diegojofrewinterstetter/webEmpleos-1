@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Publicacion</title>
+</head>
+
+<body>
+    <form action="" th:object="${publicacion}"method="post"> 
+        <label for="nombre">Titulo:</label>
+        <input type="text" th:field="*{nombre}"> 
+        <label for="descripcion">Descripción:</label>
+        <input type="text" th:field="*{descripcion}" >
+        <label for="foto">Añadir foto:</label>
+        <input type="file">    
+        <label for="disponibilidad">Disponibilidad Horaria:</label>
+        <input type="text" th:field="*{disponibilidad}" >
+        <label for="fecha">Fecha de publicación:</label>
+        <input type="date" th:field="*{fechaPublicacion}" >     
+        <input type="submit" value= "Enviar" >
+
+    </form>
+</body>
+
+</html>
