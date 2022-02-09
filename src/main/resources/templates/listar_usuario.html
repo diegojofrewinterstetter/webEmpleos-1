@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+            <tr>
+                <th> Nombre </th>
+            </tr>
+            <tr>
+                <th> Apellido </th>
+            </tr>
+            <tr>
+                <th> Documento </th>
+            </tr>
+            <tr>
+                <th> Fecha de Nacimiento </th>
+            </tr>
+            <tr>
+                <th> Correo </th>
+            </tr>
+            <tr>
+                <th> Imagen </th>
+            </tr>
+            <tr>
+                <th> Educacion </th>
+            </tr>
+            <tr>
+                <th> Descripcion </th>
+            </tr>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="usuario : ${usuarios}">
+                <td th:text="${usuario.nombre}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
