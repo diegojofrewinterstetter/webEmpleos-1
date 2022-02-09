@@ -22,6 +22,13 @@ public class PublicacionController {
     @Autowired
     private PublicacionService publicacionService;
     
+    @GetMapping("/listar")
+    public String listar(Model model) {
+        model.addAttribute("titulo", "Listado de publicaciones");
+        model.addAttribute("publicaciones", publicacionService.findAll());
+        return "listar-publicaciones";
+    }
+    
     @GetMapping("/crear")
     public String crear(Model model){
         model.addAttribute("titulo", "Formulario de la publicacion");
@@ -51,12 +58,6 @@ public class PublicacionController {
         return "redirect:/publicacion/listar";
     }
     
-    @GetMapping("/listar")
-    public String listar(Model model) {
-        model.addAttribute("titulo", "Listado de publicaciones");
-        model.addAttribute("publicaciones", publicacionService.findAll());
-        return "listar-publicaciones";
-    }
     
     @GetMapping("/editar")
     public String editar(Model model) {
@@ -71,4 +72,18 @@ public class PublicacionController {
         redirectAttributes.addFlashAttribute("success", "La publicacion ha sido eliminada con exito");
         return "redirect:/publicacion/listar";
     }
+    
+//    @GetMapping("/imagen/{id}")
+//    public ResponseEntity<byte[]> fotoPublicacion(@PathVariable(value = "id") Integer id) {
+//        Publicacion publicacion = publicacionService.findById(id).get();
+//
+//        if (publicacion.getImagen() != null) {
+//
+//            HttpHeaders cabecera = new HttpHeaders();
+//            cabecera.setContentType(MediaType.IMAGE_JPEG);
+//
+//            return new ResponseEntity<>(publicacion.getImagen(), cabecera, HttpStatus.OK);
+//        }
+//        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//    }
 }
