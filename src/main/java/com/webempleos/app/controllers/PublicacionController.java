@@ -5,6 +5,10 @@ import com.webempleos.app.models.entity.Publicacion;
 import com.webempleos.app.service.interfaces.PublicacionService;
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/publicacion")
+@RequestMapping("/publicaciones")
 public class PublicacionController {
     
     @Autowired
@@ -73,17 +77,17 @@ public class PublicacionController {
         return "redirect:/publicacion/listar";
     }
     
-//    @GetMapping("/imagen/{id}")
-//    public ResponseEntity<byte[]> fotoPublicacion(@PathVariable(value = "id") Integer id) {
-//        Publicacion publicacion = publicacionService.findById(id).get();
-//
-//        if (publicacion.getImagen() != null) {
-//
-//            HttpHeaders cabecera = new HttpHeaders();
-//            cabecera.setContentType(MediaType.IMAGE_JPEG);
-//
-//            return new ResponseEntity<>(publicacion.getImagen(), cabecera, HttpStatus.OK);
-//        }
-//        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//    }
+    @GetMapping("/imagen/{id}")
+    public ResponseEntity<byte[]> fotoPublicacion(@PathVariable(value = "id") Integer id) {
+        Publicacion publicacion = publicacionService.findById(id).get();
+
+        if (publicacion.getImagen() != null) {
+
+            HttpHeaders cabecera = new HttpHeaders();
+            cabecera.setContentType(MediaType.IMAGE_JPEG);
+
+            return new ResponseEntity<>(publicacion.getImagen(), cabecera, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }

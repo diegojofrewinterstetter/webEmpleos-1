@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.io.IOException;
 
 @Controller
-@RequestMapping(value = "usuarios")
+@RequestMapping(value = "/usuarios")
 public class UsuarioController {
 
     @Autowired

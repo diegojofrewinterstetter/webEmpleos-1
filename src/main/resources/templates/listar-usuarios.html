@@ -27,12 +27,11 @@
                 <td th:text="${usuario.nombre}"></td>
                 <td th:text="${usuario.apellido}"></td>
                 <td th:text="${usuario.documento}"></td>
-                <td th:text="${usuario.fechanacimiento"></td>
+                <td th:text="${usuario.fechaNacimiento}"></td>
                 <td th:text="${usuario.email}"></td>
                 <td><img th:if="${usuario.imagen != null}"
                          th:src="${'/usuarios/imagen/' + usuario.id}"
                          alt="Foto Usuario"></td></td>
-                <td th:text="${usuario.disponibilidad}">
                 </td>
                 <td th:text="${usuario.educacion}"></td>
                 <td th:text="${usuario.descripcion}"></td>

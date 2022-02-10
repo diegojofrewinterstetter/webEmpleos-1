@@ -12,15 +12,15 @@
 <h1 th:text="${titulo}"></h1>
 <form th:action="@{/publicacion/crear}" th:object="${publicacion}" method="post">
     <label for="nombre">Nombre:</label>
-    <input type="text" th:field="*{nombre}">
+    <input id="nombre" type="text" th:field="*{nombre}">
     <label for="descripcion">Descripción:</label>
-    <input type="text" th:field="*{descripcion}">
-    <label for="foto">Añadir foto:</label>
-    <input type="file">
+    <input id="descripcion" type="text" th:field="*{descripcion}">
+    <label for="imagen">Añadir foto:</label>
+    <input id="imagen" type="file">
     <label for="disponibilidad">Disponibilidad Horaria:</label>
-    <input type="text" th:field="*{disponibilidad}">
+    <input id="disponibilidad" type="text" th:field="*{disponibilidad}">
     <label for="fecha">Fecha de publicación:</label>
-    <input type="date" th:field="*{fechaPublicacion}">
+    <input id="fecha" type="date" th:field="*{fechaPublicacion}">
     <input type="submit" value="Enviar">
 </form>
 </body>

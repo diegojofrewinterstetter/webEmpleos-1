@@ -9,38 +9,37 @@
 </head>
 
 <body>
-    <form action=""th:object="${publicacion}"method="post">
-        <label for="documento">DNI:</label>
-        <input id="documento" type="number" th:field="*{documento}">
-        
-        <label for="fechanacimiento">Fecha de nacimiento:</label>
-        <input id="fechanacimiento" type="date"th:field="*{fechaNacimiento}">
-        
-        <label for="nombre">Nombre:</label>
-        <input id="nombre" type="text"th:field="*{nombre}">
-        
-        <label for="apellido">Apellido:</label>
-        <input id="apellido" type="text"th:field="*{apellido}">
-        
-        <label for="password">Contraseña:</label>
-        <input id="password" type="text"th:field="*{password}">
-        
-        <label for="email">Correo:</label>
-        <input id="email" type="email"th:field="*{email}">
-        
-        <label for="imagen">Añadir imagen:</label>
-        <input id="imagen" type="image"th:field="*{imagen}">
-        
-        <label for="educacion">Ingrese Educacion:</label>
-        <input id="educacion" type="text"th:field="*{educacion}">
-        
-        <label for="descripcion">Descripcion:</label>
-        <input id= "descripcion" type="text"th:field="*{descripcion}">
-        
-        <button type="submit">Enviar los datos ingresados</button>
-        
+<form th:action="@{/usuarios/crear}" th:object="${publicacion}" method="post">
+    <label for="nombre">Nombre:</label>
+    <input id="nombre" type="text" th:field="*{nombre}">
 
-    </form>
+    <label for="apellido">Apellido:</label>
+    <input id="apellido" type="text" th:field="*{apellido}">
+
+    <label for="documento">DNI:</label>
+    <input id="documento" type="number" th:field="*{documento}">
+
+    <label for="fechanacimiento">Fecha de nacimiento:</label>
+    <input id="fechanacimiento" type="date" th:field="*{fechaNacimiento}">
+
+    <label for="password">Contraseña:</label>
+    <input id="password" type="text" th:field="*{password}">
+
+    <label for="email">Correo:</label>
+    <input id="email" type="email" th:field="*{email}">
+
+    <label for="imagen">Añadir imagen:</label>
+    <input id="imagen" type="image" th:field="*{imagen}">
+
+    <label for="educacion">Ingrese Educacion:</label>
+    <input id="educacion" type="text" th:field="*{educacion}">
+
+    <label for="descripcion">Descripcion:</label>
+    <input id="descripcion" type="text" th:field="*{descripcion}">
+
+    <button type="submit">Enviar</button>
+
+</form>
 </body>
 
 </html>
