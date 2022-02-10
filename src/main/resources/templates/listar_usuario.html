@@ -12,23 +12,14 @@
     <table>
         <thead>
             <tr>
-
                 <th> Nombre </th>
-
                 <th> Apellido </th>
-
                 <th> Documento </th>
-
                 <th> Fecha de Nacimiento </th>
-
                 <th> Correo </th>
-
                 <th> Imagen </th>
-
                 <th> Educacion </th>
-
                 <th> Descripcion </th>
-
             </tr>
         </thead>
         <tbody>
@@ -38,7 +29,11 @@
                 <td th:text="${usuario.documento}"></td>
                 <td th:text="${usuario.fechanacimiento"></td>
                 <td th:text="${usuario.email}"></td>
-                <td th:text="${usuario.imagen}"></td>
+                <td><img th:if="${usuario.imagen != null}"
+                         th:src="${'/usuarios/imagen/' + usuario.id}"
+                         alt="Foto Usuario"></td></td>
+                <td th:text="${usuario.disponibilidad}">
+                </td>
                 <td th:text="${usuario.educacion}"></td>
                 <td th:text="${usuario.descripcion}"></td>
             </tr>
