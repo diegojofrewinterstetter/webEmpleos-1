@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="publicaciones : ${publicaciones}">
+            <tr th:each="publicacion : ${publicaciones}">
                 <td th:text="${publicacion.titulo}"></td>
                 <td th:text="${publicacion.descripcion}"></td>
                 <td><img th:if="${publicacion.imagen != null}"

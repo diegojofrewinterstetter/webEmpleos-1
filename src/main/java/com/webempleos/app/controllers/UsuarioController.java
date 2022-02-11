@@ -41,17 +41,17 @@ public class UsuarioController {
         byte[] contenido = null;
 
         //Verificamos que el archivo no este vacio
-        if (!imagen.isEmpty()) {
-            //Verficiamos que el contenido del archivo sea una foto tipo jpg o png
-            if (imagen.getContentType().endsWith("jpeg") || imagen.getContentType().endsWith("png")) {
-                try {
-                    contenido = imagen.getBytes();
-                    usuario.setImagen(contenido);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+//        if (!imagen.isEmpty()) {
+//            //Verficiamos que el contenido del archivo sea una foto tipo jpg o png
+//            if (imagen.getContentType().endsWith("jpeg") || imagen.getContentType().endsWith("png")) {
+//                try {
+//                    contenido = imagen.getBytes();
+//                    usuario.setImagen(contenido);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
         usuarioService.save(usuario);
         redirectAttributes.addFlashAttribute("success", "El usuario ha sido creado con exito");
         return "redirect:/usuarios/listar";
