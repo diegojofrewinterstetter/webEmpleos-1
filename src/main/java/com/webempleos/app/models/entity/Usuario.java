@@ -28,7 +28,7 @@ public class Usuario implements Serializable {
     @NotNull
     @Max(value = 100000000)
     private Integer documento;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+//    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "fecha_nacimiento")
     private LocalDate fechaNacimiento;
     @NotBlank
@@ -59,4 +59,12 @@ public class Usuario implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "id_autoridad", referencedColumnName = "id"),
             uniqueConstraints = {@UniqueConstraint(columnNames = {"id_usuario", "id_autoridad"})})
     private List<Autoridad> autoridades;
+
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
+    }
 }

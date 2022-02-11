@@ -9,12 +9,15 @@
 </head>
 
 <body>
-<form th:action="@{/usuarios/crear}" th:object="${usuario}" method="POST">
+<form th:action="@{/usuarios/crear}" th:object="${usuario}" method="POST" enctype="multipart/form-data">
     <label for="nombre">Nombre:</label>
     <input id="nombre" type="text" th:field="*{nombre}">
 
     <label for="apellido">Apellido:</label>
     <input id="apellido" type="text" th:field="*{apellido}">
+
+    <label for="username">Nombre de usuario:</label>
+    <input id="username" type="text" th:field="*{username}">
 
     <label for="documento">DNI:</label>
     <input id="documento" type="number" th:field="*{documento}">
@@ -28,8 +31,8 @@
     <label for="email">Correo:</label>
     <input id="email" type="email" th:field="*{email}">
 
-    <label for="imagen">Añadir imagen:</label>
-    <input id="imagen" type="file" th:field="*{imagen}">
+    <label for="foto">Añadir imagen:</label>
+    <input id="foto" type="file" name="foto">
 
     <label for="educacion">Ingrese Educacion:</label>
     <input id="educacion" type="text" th:field="*{educacion}">

@@ -42,15 +42,15 @@ public class PublicacionController {
     
     @PostMapping("/crear")
     public String crear(Publicacion publicacion, RedirectAttributes redirectAttributes, 
-            @RequestParam(name = "imagen", required = false) MultipartFile imagen){
+            @RequestParam(name = "foto", required = false) MultipartFile foto){
         byte[] contenido = null;
         
         //Verificamos que el archivo no este vacio
-        if (!imagen.isEmpty()) {
+        if (!foto.isEmpty()) {
             //Verficiamos que el contenido del archivo sea una foto tipo jpg o png
-            if (imagen.getContentType().endsWith("jpeg") || imagen.getContentType().endsWith("png")) {
+            if (foto.getContentType().endsWith("jpeg") || foto.getContentType().endsWith("png")) {
                 try {
-                    contenido = imagen.getBytes();
+                    contenido = foto.getBytes();
                     publicacion.setImagen(contenido);
                 } catch (IOException e) {
                     e.printStackTrace();

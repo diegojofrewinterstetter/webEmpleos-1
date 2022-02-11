@@ -9,10 +9,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.io.IOException;
 
 @Controller
@@ -37,21 +39,27 @@ public class UsuarioController {
     }
 
     @PostMapping(value = "/crear")
-    public String crear(Usuario usuario, RedirectAttributes redirectAttributes, @RequestParam(name = "imagen", required = false) MultipartFile imagen) {
-        byte[] contenido = null;
+    public String crear(@Valid Usuario usuario, @RequestParam(value = "foto",required = false) MultipartFile foto , RedirectAttributes redirectAttributes,
+                        BindingResult result) {
 
-        //Verificamos que el archivo no este vacio
-//        if (!imagen.isEmpty()) {
-//            //Verficiamos que el contenido del archivo sea una foto tipo jpg o png
-//            if (imagen.getContentType().endsWith("jpeg") || imagen.getContentType().endsWith("png")) {
-//                try {
-//                    contenido = imagen.getBytes();
-//                    usuario.setImagen(contenido);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
+        if(result.hasErrors()){
+            return "form-usuario";
+        }
+
+        byte[] contenido = null;
+//        Verificamos que el archivo no este vacio
+        if (!foto.isEmpty()) {
+            //Verficiamos que el contenido del archivo sea una foto tipo jpg o png
+            if (foto.getContentType().endsWith("jpeg") || foto.getContentType().endsWith("png")) {
+                try {
+                    contenido = foto.getBytes();
+                    usuario.setImagen(contenido);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.out.println("Hola el error es : "+e.getMessage());
+                }
+            }
+        }
         usuarioService.save(usuario);
         redirectAttributes.addFlashAttribute("success", "El usuario ha sido creado con exito");
         return "redirect:/usuarios/listar";
