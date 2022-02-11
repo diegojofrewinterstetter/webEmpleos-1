@@ -8,8 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import javax.validation.constraints.NotEmpty;
-import org.springframework.format.annotation.DateTimeFormat;
+import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
@@ -23,13 +22,13 @@ public class Publicacion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotEmpty
+    @NotBlank
     private String titulo;
-    @NotEmpty
+    @NotBlank
     private String descripcion;
     @Lob
     private byte[] imagen;
-    @NotEmpty
+    @NotBlank
     private String disponibilidad;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "fecha_publicacion")
