@@ -7,6 +7,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import javax.validation.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Getter
 @Setter
@@ -20,11 +22,15 @@ public class Publicacion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotEmpty
     private String titulo;
+    @NotEmpty
     private String descripcion;
     @Lob
     private byte[] imagen;
+    @NotEmpty
     private String disponibilidad;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "fecha_publicacion")
     private LocalDate fechaPublicacion;
 
