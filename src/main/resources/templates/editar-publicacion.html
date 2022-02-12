@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titulo}">Title</title>
+</head>
+<body>
+<form th:action="@{/publicaciones/editar}" th:object="${publicacion}" method="POST"
+      enctype="multipart/form-data">
+    <label for="titulo">Nombre:</label>
+    <input id="titulo" type="text" th:field="*{titulo}">
+    <div th:if="${#fields.hasErrors('titulo')}"
+         th:errors="*{titulo}" th:errorclass="'form-control alert-danger'"></div>
+
+    <label for="descripcion">Descripción:</label>
+    <input id="descripcion" type="text" th:field="*{descripcion}">
+    <div th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
+
+    <label for="foto">Añadir foto:</label>
+    <input id="foto" type="file" name="foto">
+
+    <label for="disponibilidad">Disponibilidad Horaria:</label>
+    <input id="disponibilidad" type="text" th:field="*{disponibilidad}">
+    <div th:if="${#fields.hasErrors('disponibilidad')}"
+         th:errors="*{disponibilidad}" th:errorclass="'form-control alert-danger'"></div>
+
+    <input type="submit" value="Enviar">
+</body>
+</html>

@@ -15,11 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -27,6 +23,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/publicaciones")
+@SessionAttributes(value = "publicacion")
 public class PublicacionController {
 
     @Autowired
@@ -76,12 +73,38 @@ public class PublicacionController {
         return "redirect:/publicaciones/listar";
     }
 
-
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable(value = "id") Integer id, Model model) {
         model.addAttribute("titulo", "Datos de la publicacion");
         model.addAttribute("publicacion", publicacionService.findById(id).orElse(null));
         return "editar-publicacion";
+    }
+    
+    @PostMapping("/editar")
+    public String crear(@Valid Publicacion publicacion, BindingResult result,
+                        @RequestParam(name = "foto", required = false) MultipartFile foto
+            , RedirectAttributes redirectAttributes) {
+
+        if (result.hasErrors()) {
+            return "form-publicacion";
+        }
+        byte[] contenido = null;
+
+        //Verificamos que el archivo no este vacio
+        if (!foto.isEmpty()) {
+            //Verficiamos que el contenido del archivo sea una foto tipo jpg o png
+            if (foto.getContentType().endsWith("jpeg") || foto.getContentType().endsWith("png")) {
+                try {
+                    contenido = foto.getBytes();
+                    publicacion.setImagen(contenido);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        publicacionService.save(publicacion);
+        redirectAttributes.addFlashAttribute("success", "La publicacion ha sido editada con exito");
+        return "redirect:/publicaciones/listar";
     }
 
     @GetMapping("/eliminar/{id}")
