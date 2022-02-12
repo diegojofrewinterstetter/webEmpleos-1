@@ -39,8 +39,8 @@ public class UsuarioController {
     }
 
     @PostMapping(value = "/crear")
-    public String crear(@Valid Usuario usuario, @RequestParam(value = "foto",required = false) MultipartFile foto , RedirectAttributes redirectAttributes,
-                        BindingResult result) {
+    public String crear(@Valid Usuario usuario,
+                        BindingResult result, @RequestParam(value = "foto",required = false) MultipartFile foto , RedirectAttributes redirectAttributes) {
 
         if(result.hasErrors()){
             return "form-usuario";
