@@ -10,17 +10,24 @@
 
 <body>
 <h1 th:text="${titulo}"></h1>
-<form th:action="@{/publicacion/crear}" th:object="${publicacion}" method="post">
+<form th:action="@{/publicacion/crear}" th:object="${publicacion}" method="post" enctype="multipart/form-data">
     <label for="nombre">Nombre:</label>
     <input id="nombre" type="text" th:field="*{nombre}">
+    <div th:if="${#fields.hasErrors('nombre')}"
+         th:errors="*{nombre}" th:errorclass="'form-control alert-danger'"></div>
+
     <label for="descripcion">Descripción:</label>
     <input id="descripcion" type="text" th:field="*{descripcion}">
+
     <label for="foto">Añadir foto:</label>
     <input id="foto" type="file" name="foto">
+
     <label for="disponibilidad">Disponibilidad Horaria:</label>
     <input id="disponibilidad" type="text" th:field="*{disponibilidad}">
+
     <label for="fecha">Fecha de publicación:</label>
     <input id="fecha" type="date" th:field="*{fechaPublicacion}">
+
     <input type="submit" value="Enviar">
 </form>
 </body>

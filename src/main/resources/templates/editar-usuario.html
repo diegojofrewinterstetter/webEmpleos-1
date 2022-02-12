@@ -10,7 +10,7 @@
 
 <body>
 <h1 th:text="${titulo}"></h1>
-<form th:action="@{/usuarios/editar}" th:object="${publicacion}" method="post">
+<form th:action="@{/usuarios/editar}" th:object="${publicacion}" method="post" enctype="multipart/form-data">
 
     <label for="nombre">Nombre:</label>
     <input id="nombre" type="text" th:field="*{nombre}">
@@ -30,8 +30,8 @@
     <label for="email">Correo:</label>
     <input id="email" type="email" th:field="*{email}">
 
-    <label for="imagen">Añadir imagen:</label>
-    <input id="imagen" type="file" name="imagen">
+    <label for="foto">Añadir imagen:</label>
+    <input id="foto" type="file" name="foto">
 
     <label for="educacion">Ingrese Educacion:</label>
     <input id="educacion" type="text" th:field="*{educacion}">
