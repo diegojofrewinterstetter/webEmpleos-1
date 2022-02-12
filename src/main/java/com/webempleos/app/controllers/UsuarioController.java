@@ -19,6 +19,7 @@ import java.io.IOException;
 
 @Controller
 @RequestMapping(value = "/usuarios")
+@SessionAttributes(value = "usuario")
 public class UsuarioController {
 
     @Autowired
@@ -40,9 +41,9 @@ public class UsuarioController {
 
     @PostMapping(value = "/crear")
     public String crear(@Valid Usuario usuario,
-                        BindingResult result, @RequestParam(value = "foto",required = false) MultipartFile foto , RedirectAttributes redirectAttributes) {
+                        BindingResult result, @RequestParam(value = "foto", required = false) MultipartFile foto, RedirectAttributes redirectAttributes) {
 
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             return "form-usuario";
         }
 
@@ -56,7 +57,7 @@ public class UsuarioController {
                     usuario.setImagen(contenido);
                 } catch (IOException e) {
                     e.printStackTrace();
-                    System.out.println("Hola el error es : "+e.getMessage());
+                    System.out.println("Hola el error es : " + e.getMessage());
                 }
             }
         }
@@ -65,10 +66,10 @@ public class UsuarioController {
         return "redirect:/usuarios/listar";
     }
 
-    @GetMapping(value = "/editar")
-    public String editar(Model model) {
+    @GetMapping(value = "/editar/{id}")
+    public String editar(@PathVariable(value = "id") Integer id, Model model) {
         model.addAttribute("titulo", "Datos del usuario");
-        model.addAttribute("usuario", new Usuario());
+        model.addAttribute("usuario", usuarioService.findById(id));
         return "editar-usuario";
     }
 

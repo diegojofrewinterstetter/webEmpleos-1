@@ -49,7 +49,7 @@ public class PublicacionController {
     }
 
     @PostMapping("/crear/{nombreUser}")
-    public String crear(@PathVariable(value = "nombreUser") String nombreUser,@Valid Publicacion publicacion
+    public String crear(@PathVariable(value = "nombreUser") String nombreUser, @Valid Publicacion publicacion
             , BindingResult result, @RequestParam(name = "foto", required = false) MultipartFile foto
             , RedirectAttributes redirectAttributes) {
 
@@ -77,10 +77,10 @@ public class PublicacionController {
     }
 
 
-    @GetMapping("/editar")
-    public String editar(Model model) {
+    @GetMapping("/editar/{id}")
+    public String editar(@PathVariable(value = "id") Integer id, Model model) {
         model.addAttribute("titulo", "Datos de la publicacion");
-        model.addAttribute("publicacion", new Publicacion());
+        model.addAttribute("publicacion", publicacionService.findById(id).orElse(null));
         return "editar-publicacion";
     }
 
