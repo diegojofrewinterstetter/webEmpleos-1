@@ -28,7 +28,7 @@ public class Usuario implements Serializable {
     @NotNull
     @Max(value = 100000000)
     private Integer documento;
-//    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "fecha_nacimiento")
     private LocalDate fechaNacimiento;
     @NotBlank
