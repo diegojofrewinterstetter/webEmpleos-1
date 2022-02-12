@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("/publicaciones")
 public class PublicacionController {
@@ -47,8 +49,9 @@ public class PublicacionController {
     }
 
     @PostMapping("/crear/{nombreUser}")
-    public String crear(@PathVariable(value = "nombreUser") String nombreUser, Publicacion publicacion, @RequestParam(name = "foto", required = false) MultipartFile foto
-            , RedirectAttributes redirectAttributes, BindingResult result) {
+    public String crear(@PathVariable(value = "nombreUser") String nombreUser,@Valid Publicacion publicacion
+            , BindingResult result, @RequestParam(name = "foto", required = false) MultipartFile foto
+            , RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
             return "form-publicacion";

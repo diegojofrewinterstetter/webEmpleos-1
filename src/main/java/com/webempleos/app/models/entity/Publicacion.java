@@ -30,7 +30,6 @@ public class Publicacion implements Serializable {
     private byte[] imagen;
     @NotBlank
     private String disponibilidad;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "fecha_publicacion")
     private LocalDate fechaPublicacion;
 
@@ -38,6 +37,11 @@ public class Publicacion implements Serializable {
     @JoinColumn(name = "id_usuario", referencedColumnName = "id")
     private Usuario usuario;
     @ManyToOne(cascade = {CascadeType.MERGE})
-    @JoinColumn(name = "id_categoria",referencedColumnName = "id")
+    @JoinColumn(name = "id_categoria", referencedColumnName = "id")
     private Categoria categoria;
+
+    @PrePersist
+    public void prePersist() {
+        this.fechaPublicacion = LocalDate.now();
+    }
 }

@@ -67,4 +67,9 @@ public class Usuario implements Serializable {
     public void setImagen(byte[] imagen) {
         this.imagen = imagen;
     }
+
+    @PrePersist
+    public void prePersist() {
+        this.alta = true;
+    }
 }

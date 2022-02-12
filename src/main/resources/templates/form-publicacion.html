@@ -10,7 +10,8 @@
 
 <body>
 <h1 th:text="${titulo}"></h1>
-<form th:action="@{/publicaciones/crear/}+'Fede'" th:object="${publicacion}" method="post" enctype="multipart/form-data">
+<form th:action="@{/publicaciones/crear/}+'Fede'" th:object="${publicacion}" method="post"
+      enctype="multipart/form-data">
     <label for="titulo">Nombre:</label>
     <input id="titulo" type="text" th:field="*{titulo}">
     <div th:if="${#fields.hasErrors('titulo')}"
@@ -18,15 +19,15 @@
 
     <label for="descripcion">Descripción:</label>
     <input id="descripcion" type="text" th:field="*{descripcion}">
+    <div th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
 
     <label for="foto">Añadir foto:</label>
     <input id="foto" type="file" name="foto">
 
     <label for="disponibilidad">Disponibilidad Horaria:</label>
     <input id="disponibilidad" type="text" th:field="*{disponibilidad}">
-
-    <label for="fecha">Fecha de publicación:</label>
-    <input id="fecha" type="date" th:field="*{fechaPublicacion}">
+    <div th:if="${#fields.hasErrors('disponibilidad')}"
+         th:errors="*{disponibilidad}" th:errorclass="'form-control alert-danger'"></div>
 
     <input type="submit" value="Enviar">
 </form>
