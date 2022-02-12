@@ -6,6 +6,7 @@ import com.webempleos.app.service.interfaces.PublicacionService;
 
 import java.io.IOException;
 
+import com.webempleos.app.service.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -28,12 +29,14 @@ public class PublicacionController {
 
     @Autowired
     private PublicacionService publicacionService;
+    @Autowired
+    private UsuarioService usuarioService;
 
     @GetMapping("/listar")
     public String listar(Model model) {
         model.addAttribute("titulo", "Listado de publicaciones");
         model.addAttribute("publicaciones", publicacionService.findAll());
-        return "listar-publicaciones";
+        return "listar-publicacion";
     }
 
     @GetMapping("/crear")
@@ -43,14 +46,14 @@ public class PublicacionController {
         return "form-publicacion";
     }
 
-    @PostMapping("/crear")
-    public String crear(Publicacion publicacion, @RequestParam(name = "foto", required = false) MultipartFile foto
+    @PostMapping("/crear/{nombreUser}")
+    public String crear(@PathVariable(value = "nombreUser") String nombreUser, Publicacion publicacion, @RequestParam(name = "foto", required = false) MultipartFile foto
             , RedirectAttributes redirectAttributes, BindingResult result) {
 
         if (result.hasErrors()) {
             return "form-publicacion";
         }
-
+        publicacion.setUsuario(usuarioService.findByNombre(nombreUser).get());
         byte[] contenido = null;
 
         //Verificamos que el archivo no este vacio
@@ -67,7 +70,7 @@ public class PublicacionController {
         }
         publicacionService.save(publicacion);
         redirectAttributes.addFlashAttribute("success", "La publicacion ha sido creada con exito");
-        return "redirect:/publicacion/listar";
+        return "redirect:/publicaciones/listar";
     }
 
 
@@ -82,7 +85,7 @@ public class PublicacionController {
     public String eliminar(@PathVariable(name = "id") Integer id, RedirectAttributes redirectAttributes) {
         publicacionService.deleteById(id);
         redirectAttributes.addFlashAttribute("success", "La publicacion ha sido eliminada con exito");
-        return "redirect:/publicacion/listar";
+        return "redirect:/publicaciones/listar";
     }
 
     @GetMapping("/imagen/{id}")

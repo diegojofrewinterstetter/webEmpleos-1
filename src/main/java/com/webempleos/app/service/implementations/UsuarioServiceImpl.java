@@ -21,6 +21,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
+    public Optional<Usuario> findByNombre(String nombre) {
+        return usuarioRepository.findByNombre(nombre);
+    }
+
+    @Override
     public Optional<Usuario> findById(Integer id) {
         return usuarioRepository.findById(id);
     }

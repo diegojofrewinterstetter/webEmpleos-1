@@ -9,6 +9,8 @@ public interface UsuarioService {
 
     List<Usuario> findAll();
 
+    Optional<Usuario> findByNombre(String nombre);
+
     Optional<Usuario> findById(Integer id);
 
     void save(Usuario usuario);
