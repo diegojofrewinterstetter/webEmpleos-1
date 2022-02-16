@@ -53,13 +53,13 @@ public class PublicacionController {
         if (result.hasErrors()) {
             return "form-publicacion";
         }
-        publicacion.setUsuario(usuarioService.findByNombre(nombreUser).get());
+        publicacion.setUsuario(usuarioService.findByNombre(nombreUser).orElse(null));
         byte[] contenido = null;
 
         //Verificamos que el archivo no este vacio
         if (!foto.isEmpty()) {
             //Verficiamos que el contenido del archivo sea una foto tipo jpg o png
-            if (foto.getContentType().endsWith("jpeg") || foto.getContentType().endsWith("png")) {
+            if (foto.getContentType().endsWith("jpeg") || foto.getContentType().endsWith("png") || foto.getContentType().endsWith("svg")) {
                 try {
                     contenido = foto.getBytes();
                     publicacion.setImagen(contenido);
@@ -79,7 +79,7 @@ public class PublicacionController {
         model.addAttribute("publicacion", publicacionService.findById(id).orElse(null));
         return "editar-publicacion";
     }
-    
+
     @PostMapping("/editar")
     public String crear(@Valid Publicacion publicacion, BindingResult result,
                         @RequestParam(name = "foto", required = false) MultipartFile foto
@@ -93,7 +93,7 @@ public class PublicacionController {
         //Verificamos que el archivo no este vacio
         if (!foto.isEmpty()) {
             //Verficiamos que el contenido del archivo sea una foto tipo jpg o png
-            if (foto.getContentType().endsWith("jpeg") || foto.getContentType().endsWith("png")) {
+            if (foto.getContentType().endsWith("jpeg") || foto.getContentType().endsWith("png") || foto.getContentType().endsWith("svg")) {
                 try {
                     contenido = foto.getBytes();
                     publicacion.setImagen(contenido);
@@ -105,6 +105,16 @@ public class PublicacionController {
         publicacionService.save(publicacion);
         redirectAttributes.addFlashAttribute("success", "La publicacion ha sido editada con exito");
         return "redirect:/publicaciones/listar";
+    }
+
+    @GetMapping(value = "/info/{id}")
+    public String info(@PathVariable(value = "id") Integer id, Model model) {
+        if (id <= 0) {
+            return "redirect:/publicaciones/listar";
+        }
+        Publicacion publicacion = publicacionService.findById(id).orElse(null);
+        model.addAttribute("publicacion", publicacion);
+        return "publicacion/info";
     }
 
     @GetMapping("/eliminar/{id}")

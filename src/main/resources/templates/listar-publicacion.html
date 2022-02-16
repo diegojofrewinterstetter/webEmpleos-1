@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
     <title>Document</title>
 </head>
 
 
 <body>
-    <table>
-        <thead>
-            <tr>
-                <th>Titulo</th>
-                <th>Descripcion</th>
-                <th>Imagen</th>
-                <th>Disponibilidad Horaria</th>
-                <th>Fecha de Publicacion</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="publicacion : ${publicaciones}">
-                <td th:text="${publicacion.titulo}"></td>
-                <td th:text="${publicacion.descripcion}"></td>
-                <td><img th:if="${publicacion.imagen != null}"
-                         th:src="${'/publicaciones/imagen/' + publicacion.id}" alt="Foto Publicacion"></td></td>
-                <td th:text="${publicacion.disponibilidad}"></td>
-                <td th:text="${publicacion.fechaPublicacion}"></td>
-            </tr>
-        </tbody>
-    </table>
+<h1 class="text-align-center" th:text="${titulo}"></h1>
+<a class="btn btn-primary text-decoration-none" th:href="@{/publicaciones/crear}">Crear publicacion</a>
+<main class="container">
+    <article class="card" th:each="publicacion : ${publicaciones}">
+        <div class="face front">
+            <img th:if="${publicacion.imagen != null}" th:src="${'/publicaciones/imagen/' + publicacion.id}" alt="Foto">
+            <h3 th:text="${publicacion.titulo}"></h3>
+        </div>
+        <div class="face back">
+            <h3 th:text="${publicacion.titulo}"></h3>
+            <p th:text="${publicacion.descripcion}"></p>
+            <div class="link">
+                <a class="btn btn-secondary text-decoration-none" th:href="@{/publicaciones/info/} + ${publicacion.id}">Info</a>
+            </div>
+        </div>
+    </article>
+</main>
 </body>
+
 </html>
