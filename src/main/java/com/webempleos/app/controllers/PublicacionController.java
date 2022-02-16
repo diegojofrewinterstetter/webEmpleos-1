@@ -112,8 +112,12 @@ public class PublicacionController {
         if (id <= 0) {
             return "redirect:/publicaciones/listar";
         }
+
         Publicacion publicacion = publicacionService.findById(id).orElse(null);
-        model.addAttribute("publicacion", publicacion);
+        if(publicacion!=null){
+            model.addAttribute("usuario", publicacion.getUsuario());
+            model.addAttribute("publicacion", publicacion);
+        }
         return "publicacion/info";
     }
 

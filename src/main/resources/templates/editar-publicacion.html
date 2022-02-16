@@ -2,7 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${titulo}">Title</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="shortcut icon" href="../images/logo.jpg">
+    <title>MIWORKS</title>
 </head>
 <body>
 <form th:action="@{/publicaciones/editar}" th:object="${publicacion}" method="POST"
