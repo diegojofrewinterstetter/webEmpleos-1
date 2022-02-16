@@ -1,57 +1,59 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="shortcut icon" href="../images/logo.jpg">
-    <title>MIWORKS</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/styles.css">
+        <link rel="shortcut icon" href="../images/logo.jpg">
+        <title>MIWORKS</title>
+    </head>
 
-<body>
-<form th:action="@{/usuarios/crear}" th:object="${usuario}" method="POST" enctype="multipart/form-data">
-    <label for="nombre">Nombre:</label>
-    <input id="nombre" type="text" th:field="*{nombre}">
-    <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"
-         th:errorclass="'form-control alert-danger'"></div>
+    <body>
+    <selection class="form-register">
+        <h4 class = "text-aling-center" th:text="${titulo}">Formulario de registro</h4>
+        <form th:action="@{/usuarios/crear}" th:object="${usuario}" method="POST" enctype="multipart/form-data">
+            <label for="nombre">Nombre:</label>
+            <input class="controls" id="nombre" type="text" th:field="*{nombre}">
+            <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"
+                 th:errorclass="'form-control alert-danger'"></div>
 
-    <label for="apellido">Apellido:</label>
-    <input id="apellido" type="text" th:field="*{apellido}">
-    <div th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>
+            <label for="apellido">Apellido:</label>
+            <input class="controls" id="apellido" type="text" th:field="*{apellido}">
+            <div th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>
 
-    <label for="username">Nombre de usuario:</label>
-    <input id="username" type="text" th:field="*{username}">
-    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+            <label for="username">Nombre de usuario:</label>
+            <input class="controls" id="username" type="text" th:field="*{username}">
+            <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
 
-    <label for="documento">DNI:</label>
-    <input id="documento" type="number" th:field="*{documento}">
-    <div th:if="${#fields.hasErrors('documento')}" th:errors="*{documento}"></div>
+            <label for="documento">DNI:</label>
+            <input class="controls" id="documento" type="number" th:field="*{documento}">
+            <div th:if="${#fields.hasErrors('documento')}" th:errors="*{documento}"></div>
 
-    <label for="fechanacimiento">Fecha de nacimiento:</label>
-    <input id="fechanacimiento" type="date" th:field="*{fechaNacimiento}">
-    <div th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></div>
+            <label for="fechanacimiento">Fecha de nacimiento:</label>
+            <input class="controls" id="fechanacimiento" type="date" th:field="*{fechaNacimiento}">
+            <div th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></div>
 
-    <label for="password">Contraseña:</label>
-    <input id="password" type="text" th:field="*{password}">
-    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+            <label for="password">Contraseña:</label>
+            <input class="controls" id="password" type="text" th:field="*{password}">
+            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
 
-    <label for="email">Correo:</label>
-    <input id="email" type="email" th:field="*{email}">
-    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+            <label for="email">Correo:</label>
+            <input class="controls" id="email" type="email" th:field="*{email}">
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
 
-    <label for="foto">Añadir imagen:</label>
-    <input id="foto" type="file" name="foto">
+            <label for="foto">Añadir imagen:</label>
+            <input class="controls" id="foto" type="file" name="foto">
 
-    <label for="educacion">Ingrese Educacion:</label>
-    <input id="educacion" type="text" th:field="*{educacion}">
+            <label for="educacion">Ingrese Educacion:</label>
+            <input class="controls" id="educacion" type="text" th:field="*{educacion}">
 
-    <label for="descripcion">Descripcion:</label>
-    <input id="descripcion" type="text" th:field="*{descripcion}">
+            <label for="descripcion">Descripcion:</label>
+            <input class="descripciones" id="descripcion" type="text" th:field="*{descripcion}">
 
-    <button type="submit">Enviar</button>
-
+            <button class="botons" type="submit">Registrar</button>
+    </selection>
 </form>
 </body>
 
