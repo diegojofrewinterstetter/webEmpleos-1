@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="shortcut icon" href="/images/logo.jpg">
+    <title>MIWORKS</title>
+</head>
+<body>
+<h1 th:text="${titulo}"></h1>
+<img th:if="${usuario.imagen != null}" th:src="${'/usuarios/imagen/' + usuario.id}">
+<h2 th:text="${usuario.username}"></h2>
+<h3 th:text="${usuario.nombre} +' '+ ${usuario.apellido}"></h3>
+<h4 th:text="${usuario.educacion}"></h4>
+<p th:text="${usuario.descripcion}"></p>
+</body>
+</html>

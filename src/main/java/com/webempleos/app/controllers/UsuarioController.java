@@ -32,6 +32,15 @@ public class UsuarioController {
         return "listar-usuarios";
     }
 
+    @GetMapping(value = "/perfil/{username}")
+    public String perfil(@PathVariable(value = "username") String username, Model model) {
+        Usuario usuario = usuarioService.findByUsername(username).orElse(null);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("titulo", "Perfil del usuario");
+        return "perfil-usuario";
+    }
+
+
     @GetMapping(value = "/crear")
     public String crear(Model model) {
         model.addAttribute("titulo", "Formulario del usuario");

@@ -13,6 +13,8 @@ public interface UsuarioService {
 
     Optional<Usuario> findById(Integer id);
 
+    Optional<Usuario> findByUsername(String username);
+
     void save(Usuario usuario);
 
     void deleteById(Integer id);
