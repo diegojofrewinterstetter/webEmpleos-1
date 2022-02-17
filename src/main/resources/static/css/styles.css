@@ -1,4 +1,4 @@
-html {
+/*html {
   box-sizing: border-box;
 }
 
@@ -25,7 +25,7 @@ margin-bottom:2rem;
   align-items: center;
 }
 
-/*Botones*/
+Botones
 .btn {
   display: flex;
   justify-content:center;
@@ -67,7 +67,7 @@ margin-bottom:2rem;
   z-index: -1;
 }
 
-/*.btn-primary::after {
+.btn-primary::after {
   content: "";
   position: absolute;
   top: 0;
@@ -79,7 +79,7 @@ margin-bottom:2rem;
   background-color: #ae00af;
   background-color: #ae00ff;
   z-index: -1;
-}*/
+}
 
 .btn-primary:hover {
   color: white;
@@ -89,16 +89,16 @@ margin-bottom:2rem;
 border-radius:15px;
   width: 100%;
 }
-/*.btn-primary:hover::after {
+.btn-primary:hover::after {
 border-radius:15px;
   width: 100%;
-}*/
+}
 
 .btn-primary:active {
   width: 150px;
   height: 50px;
 }
-/*Btn secondary*/
+Btn secondary
 .btn-secondary {
 font-family: sans-serif;
   color: #fff;
@@ -140,7 +140,7 @@ border-radius:15px;
   height: 50px;
 }
 
-/*Tarjetas*/
+Tarjetas
 .card {
   position: relative;
   width: 300px;
@@ -184,7 +184,7 @@ border-radius:15px;
 
 .back {
   transform: perspective(600px) rotateY(180deg);
-  /* background: rgb(3, 35, 54); */
+   background: rgb(3, 35, 54); 
   background-color: black;
   padding: 15px;
   color: #f3f3f3;
@@ -226,14 +226,14 @@ border-radius:15px;
   transform: perspective(600px) rotateY(360deg);
 }
 
-/*Utilidades*/
+Utilidades
 .text-align-center{
 text-align:center;
 }
 
 .text-decoration-none{
 text-decoration:none;
-}
+}*/
 
 /*Formulario*/
 * {
@@ -243,7 +243,7 @@ text-decoration:none;
   }
   
   body {
-    background-image: url('imagen4.jpg');
+    background-image: url('../images/imagen4.jpg');
   }
   
   .form-register {
