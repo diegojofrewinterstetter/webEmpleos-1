@@ -38,6 +38,7 @@ public class UsuarioController {
     public String perfil(@PathVariable(value = "username") String username, Model model) {
         Usuario usuario = usuarioService.findByUsername(username).orElse(null);
         model.addAttribute("usuario", usuario);
+        model.addAttribute("cantidad",usuario.getPublicaciones().size());
         model.addAttribute("titulo", "Perfil del usuario");
         return "perfil-usuario";
     }

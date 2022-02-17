@@ -18,7 +18,7 @@
 </div>
 
 
-<h2 class="text-align-center">Mis Publicaciones</h2>
+<h2 class="text-align-center">Mis Publicaciones - <span th:text="${cantidad}"></span></h2>
 <article class="container">
     <div class="card" th:if="${usuario.publicaciones != null}" th:each="publicacion : ${usuario.publicaciones}">
         <div class="face front">
