@@ -3,6 +3,7 @@ package com.webempleos.app.controllers;
 import com.webempleos.app.models.entity.Usuario;
 import com.webempleos.app.service.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -29,8 +30,18 @@ public class UsuarioController {
     public String listar(Model model) {
         model.addAttribute("titulo", "Listado de usuarios");
         model.addAttribute("usuarios", usuarioService.findAll());
+//        model.addAttribute("usuarios", usuarioService.findAll(Sort.by("apellido").ascending()));
         return "listar-usuarios";
     }
+
+    @GetMapping(value = "/perfil/{username}")
+    public String perfil(@PathVariable(value = "username") String username, Model model) {
+        Usuario usuario = usuarioService.findByUsername(username).orElse(null);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("titulo", "Perfil del usuario");
+        return "perfil-usuario";
+    }
+
 
     @GetMapping(value = "/crear")
     public String crear(Model model) {

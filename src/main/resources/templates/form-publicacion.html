@@ -14,6 +14,7 @@
 <h1 th:text="${titulo}"></h1>
 <form th:action="@{/publicaciones/crear/}+'Fede'" th:object="${publicacion}" method="post"
       enctype="multipart/form-data">
+
     <label class="red" for="titulo">Nombre:</label>
     <input id="titulo" type="text" th:field="*{titulo}">
     <div th:if="${#fields.hasErrors('titulo')}"
