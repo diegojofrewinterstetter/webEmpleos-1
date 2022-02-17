@@ -44,7 +44,7 @@ public class UsuarioController {
                         BindingResult result, @RequestParam(value = "foto", required = false) MultipartFile foto, RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
-            return "redirect:/usuarios/crear";
+            return "form-usuario";
         }
 
         byte[] contenido = null;
