@@ -29,8 +29,8 @@ public class UsuarioController {
     @GetMapping(value = "/listar")
     public String listar(Model model) {
         model.addAttribute("titulo", "Listado de usuarios");
-//        model.addAttribute("usuarios", usuarioService.findAll());
-        model.addAttribute("usuarios", usuarioService.findAll(Sort.by("apellido").ascending()));
+        model.addAttribute("usuarios", usuarioService.findAll());
+//        model.addAttribute("usuarios", usuarioService.findAll(Sort.by("apellido").ascending()));
         return "listar-usuarios";
     }
 

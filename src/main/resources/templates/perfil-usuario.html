@@ -8,12 +8,32 @@
     <title>MIWORKS</title>
 </head>
 <body>
-<h1 th:text="${titulo}"></h1>
-<img th:if="${usuario.imagen != null}" th:src="${'/usuarios/imagen/' + usuario.id}">
-<img th:if="${usuario.publicaciones != null}" th:each="publi: ${usuario.publicaciones}" th:src="${'/publicaciones/imagen/' + publi.id}">
-<h2 th:text="${usuario.username}"></h2>
-<h3 th:text="${usuario.nombre} +' '+ ${usuario.apellido}"></h3>
-<h4 th:text="${usuario.educacion}"></h4>
-<p th:text="${usuario.descripcion}"></p>
+<div class="text-align-center">
+    <h1 th:text="${titulo}"></h1>
+    <img th:if="${usuario.imagen != null}" th:src="${'/usuarios/imagen/' + usuario.id}">
+    <h2 th:text="${usuario.username}"></h2>
+    <h3 th:text="${usuario.nombre} +' '+ ${usuario.apellido}"></h3>
+    <h4 th:text="${usuario.educacion}"></h4>
+    <p th:text="${usuario.descripcion}"></p>
+</div>
+
+
+<h2 class="text-align-center">Mis Publicaciones</h2>
+<article class="container">
+    <div class="card" th:if="${usuario.publicaciones != null}" th:each="publicacion : ${usuario.publicaciones}">
+        <div class="face front">
+            <img th:if="${publicacion.imagen !=null}" th:src="${'/publicaciones/imagen/' + publicacion.id}">
+            <h3 th:text="${publicacion.titulo}"></h3>
+        </div>
+        <div class="face back">
+            <h3 th:text="${publicacion.titulo}"></h3>
+            <p th:text="${publicacion.descripcion}"></p>
+            <div class="link">
+                <a class="btn btn-secondary text-decoration-none" th:href="@{/publicaciones/info/} + ${publicacion.id}">Info</a>
+            </div>
+        </div>
+    </div>
+</article>
+
 </body>
 </html>
