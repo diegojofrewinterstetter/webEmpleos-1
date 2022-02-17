@@ -1,11 +1,14 @@
 package com.webempleos.app.service.interfaces;
 
 import com.webempleos.app.models.entity.Usuario;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface UsuarioService {
+
+    List<Usuario> findAll(Sort sort);
 
     List<Usuario> findAll();
 
