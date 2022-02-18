@@ -3,37 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/styles.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="shortcut icon" href="/images/logo.jpg">
     <title>MIWORKS</title>
 </head>
 <body>
-<div class="text-align-center">
-    <h1 th:text="${titulo}"></h1>
-    <img th:if="${usuario.imagen != null}" th:src="${'/usuarios/imagen/' + usuario.id}">
-    <h2 th:text="${usuario.username}"></h2>
-    <h3 th:text="${usuario.nombre} +' '+ ${usuario.apellido}"></h3>
-    <h4 th:text="${usuario.educacion}"></h4>
-    <p th:text="${usuario.descripcion}"></p>
-</div>
 
+<header>
+    <nav class="nav">
+        <img class="nav_img" src="/images/logo.jpg" alt="Logo">
+        <ul>
+            <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/}">Inicio</a></li>
+            <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/usuarios/listar}">Usuarios</a></li>
+            <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/publicaciones/listar}">Publicaciones</a></li>
+            <li class="nav_list list-style-none"><a class="btn btn-primary text-decoration-none"th:href="@{/usuarios/perfil/} + 'fede'">Mi perfil</a></li>
+        </ul>
+    </nav>
+</header>
+<h1 class="text-align-center light" >Mi Perfil</h1>
 
-<h2 class="text-align-center">Mis Publicaciones - <span th:text="${cantidad}"></span></h2>
-<article class="container">
-    <div class="card" th:if="${usuario.publicaciones != null}" th:each="publicacion : ${usuario.publicaciones}">
-        <div class="face front">
-            <img th:if="${publicacion.imagen !=null}" th:src="${'/publicaciones/imagen/' + publicacion.id}">
-            <h3 th:text="${publicacion.titulo}"></h3>
+<h2 class="light" th:text="'Publicaciones - ' + ${cantidad}"></h2>
+<main class="container">
+    <article class="card" th:if="${usuario.publicaciones != null}" th:each="publicacion : ${usuario.publicaciones}">
+        <div class="face-primary front-primary">
+            <img th:if="${publicacion.imagen != null}" th:src="${'/publicaciones/imagen/' + publicacion.id}">
+            <h3 class="text-align-center" th:text="${publicacion.titulo}"></h3>
         </div>
-        <div class="face back">
-            <h3 th:text="${publicacion.titulo}"></h3>
+        <div class="face-primary back-primary">
+            <h3 class="text-align-center" th:text="${publicacion.titulo}"></h3>
             <p th:text="${publicacion.descripcion}"></p>
-            <div class="link">
-                <a class="btn btn-secondary text-decoration-none" th:href="@{/publicaciones/info/} + ${publicacion.id}">Info</a>
-            </div>
+            <a class="btn btn-primary text-decoration-none" th:href="@{/publicaciones/info/} + ${publicacion.id}">INFO</a>
         </div>
-    </div>
-</article>
+    </article>
+</main>
+
+<!--<div class="text-align-center">-->
+<!--    <h1 th:text="${titulo}"></h1>-->
+<!--    <img th:if="${usuario.imagen != null}" th:src="${'/usuarios/imagen/' + usuario.id}">-->
+<!--    <h2 th:text="${usuario.username}"></h2>-->
+<!--    <h3 th:text="${usuario.nombre} +' '+ ${usuario.apellido}"></h3>-->
+<!--    <h4 th:text="${usuario.educacion}"></h4>-->
+<!--    <p th:text="${usuario.descripcion}"></p>-->
+<!--</div>-->
 
 </body>
 </html>
