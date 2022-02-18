@@ -43,6 +43,15 @@ public class UsuarioController {
         return "perfil-usuario";
     }
 
+    @GetMapping(value = "/info/{id}")
+    public String info(@PathVariable(value = "id") Integer id, Model model) {
+        Usuario usuario = usuarioService.findById(id).orElse(null);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("cantidad",usuario.getPublicaciones().size());
+        model.addAttribute("titulo", "Perfil del usuario");
+        return "info-usuario";
+    }
+
 
     @GetMapping(value = "/crear")
     public String crear(Model model) {
