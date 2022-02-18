@@ -233,96 +233,61 @@ h1 {
   list-style: none;
 }
 
-.light{
-color:var(--light);
+.light {
+  color: var(--light);
+}
+
+.center{
+margin-right:auto;
+margin-left:auto;
 }
 
 /*Formulario*/
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  body {
-    /*background-image: url('../images/imagen4.jpg');*/
-  }
+body {
+  /*background-image: url('../images/imagen4.jpg');*/
+}
 
-  .form-register {
-    width: 400px;
-    background: #fff;
-    padding: 30px;
-    margin: auto;
-    margin-top: 100px;
-    border-radius: 10px;
-    font-family: 'calibri';
-    color: white;
-    box-shadow: 7px 13px 37px #000;
-  }
+.form-register {
+  width: 400px;
+  background-color: var(--primary);
+  padding: 30px;
+  /*margin-left: auto;
+  margin-right: auto;*/
+  border-radius: 15px;
+  font-family: sans-serif;
+  color: var(--light);
+  box-shadow: 7px 13px 37px var(--dark);
+}
 
-  .form-register h4 {
-    font-size: 22px;
-    margin-bottom: 20px;
-    color: #000;
-  }
+.form-register input {
+  width: 100%;
+  background-color: #bea1e7;
+  padding: 10px;
+  height: 3.5rem;
+  font-size: 1rem;
+  /* border-radius: 0 15px 15px 0; */
+  margin-bottom: 16px;
+  border: thin solid var(--dark);
+  color: var(--dark);
+}
 
-  .controls {
-    width: 100%;
-    background: #fff;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 16px;
-    border: 1px solid #000;
-    font-family: 'calibri';
-    font-size: 18px;
-    color: white;
-  }
+.form-register label {
+  font-size: 1.5rem;
+}
 
-  .form-register p {
-    height: 40px;
-    text-align: center;
-    font-size: 18px;
-    line-height: 40px;
-  }
+.text-aling-center {
+  text-align: center;
+}
 
-  .form-register a {
-    color: white;
-    text-decoration: none;
-  }
-
-  .form-register a:hover {
-    color: white;
-    text-decoration: underline;
-  }
-
-  .form-register .botons {
-    width: 100%;
-    background: #000;
-    border: none;
-    padding: 12px;
-    color: white;
-    margin: 16px 0;
-    font-size: 16px;
-  }
-
-  .descripciones {
-    width:100%;
-    background: #fff;
-    padding: 100px;
-    border-radius: 4px;
-    margin-bottom: 16px;
-    border: 1px solid #000;
-    font-family: 'calibri';
-    font-size: 18px;
-    color: white;
-
-  }
-  .text-aling-center{
-    text-align: center ;
-  }
-  label{
-    color: #000;
-  }
+label {
+  color: #000;
+}
 
 .alert {
   position: relative;
@@ -371,7 +336,7 @@ color:var(--light);
   height: 70px;
 }
 
-::selection{
+::selection {
   color: white;
   background-color: var(--dark);
 }
