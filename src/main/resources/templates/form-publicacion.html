@@ -49,8 +49,8 @@
         <div th:if="${#fields.hasErrors('disponibilidad')}"
              th:errors="*{disponibilidad}" th:errorclass="'alert alert-danger'"></div>
 
-        <button class="btn btn-light center" type="submit">Listo</button>
-        <a class="btn btn-dark text-decoration-none center" th:href="@{/publicaciones/listar}">Volver</a>
+        <button class="btn btn-dark center" type="submit">Listo</button>
+        <a class="btn btn btn-light text-decoration-none center" th:href="@{/publicaciones/listar}">Volver</a>
     </form>
 </main>
 </body>
