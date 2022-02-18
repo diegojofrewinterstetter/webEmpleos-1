@@ -48,9 +48,10 @@ public class PublicacionController {
     @PostMapping("/crear/{nombreUser}")
     public String crear(@PathVariable(value = "nombreUser") String nombreUser, @Valid Publicacion publicacion
             , BindingResult result, @RequestParam(name = "foto", required = false) MultipartFile foto
-            , RedirectAttributes redirectAttributes) {
+            , RedirectAttributes redirectAttributes,Model model) {
 
         if (result.hasErrors()) {
+            model.addAttribute("titulo", "Formulario de la publicacion");
             return "form-publicacion";
         }
         publicacion.setUsuario(usuarioService.findByNombre(nombreUser).orElse(null));

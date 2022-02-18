@@ -23,48 +23,54 @@
     </nav>
 </header>
 <h1 th:text="${titulo}"></h1>
-<form th:action="@{/usuarios/crear}" th:object="${usuario}" method="post" enctype="multipart/form-data">
+<main class="container">
+    <form class="form-register" th:action="@{/usuarios/editar}" th:object="${usuario}" method="POST" enctype="multipart/form-data">
+        <label class="light" for="nombre">Nombre:</label>
+        <input id="nombre" type="text" th:field="*{nombre}">
+        <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"
+             th:errorclass="'alert alert-danger'"></div>
 
-    <label for="nombre">Nombre:</label>
-    <input id="nombre" type="text" th:field="*{nombre}">
-    <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"
-         th:errorclass="'form-control alert-danger'"></div>
+        <label class="light" for="apellido">Apellido:</label>
+        <input id="apellido" type="text" th:field="*{apellido}">
+        <div th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"
+             th:errorclass="'alert alert-danger'"></div>
 
-    <label for="apellido">Apellido:</label>
-    <input id="apellido" type="text" th:field="*{apellido}">
-    <div th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>
+        <label class="light" for="username">Nombre de usuario:</label>
+        <input id="username" type="text" th:field="*{username}">
+        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+             th:errorclass="'alert alert-danger'"></div>
 
-    <label for="username">Nombre de usuario:</label>
-    <input id="username" type="text" th:field="*{username}">
-    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+        <label class="light" for="documento">DNI:</label>
+        <input id="documento" type="number" th:field="*{documento}">
+        <div th:if="${#fields.hasErrors('documento')}" th:errors="*{documento}"
+             th:errorclass="'alert alert-danger'"></div>
 
-    <label for="documento">DNI:</label>
-    <input id="documento" type="number" th:field="*{documento}">
-    <div th:if="${#fields.hasErrors('documento')}" th:errors="*{documento}"></div>
+        <label class="light" for="fechanacimiento">Fecha de nacimiento:</label>
+        <input id="fechanacimiento" type="date" th:field="*{fechaNacimiento}">
+        <div th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"
+             th:errorclass="'alert alert-danger'"></div>
 
-    <label for="fechanacimiento">Fecha de nacimiento:</label>
-    <input id="fechanacimiento" type="date" th:field="*{fechaNacimiento}">
-    <div th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></div>
+        <label class="light" for="password">Contraseña:</label>
+        <input id="password" type="text" th:field="*{password}">
+        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+             th:errorclass="'alert alert-danger'"></div>
 
-    <label for="password">Contraseña:</label>
-    <input id="password" type="text" th:field="*{password}">
-    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+        <label class="light" for="email">Correo:</label>
+        <input id="email" type="email" th:field="*{email}">
+        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+             th:errorclass="'alert alert-danger'"></div>
 
-    <label for="email">Correo:</label>
-    <input id="email" type="email" th:field="*{email}">
-    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        <label class="light" for="foto">Añadir imagen:</label>
+        <input class="controls" id="foto" type="file" name="foto">
 
-    <label for="foto">Añadir imagen:</label>
-    <input id="foto" type="file" name="foto">
+        <label class="light" for="educacion">Educacion:</label>
+        <input class="controls" id="educacion" type="text" th:field="*{educacion}">
 
-    <label for="educacion">Ingrese Educacion:</label>
-    <input id="educacion" type="text" th:field="*{educacion}">
+        <label class="light" for="descripcion">Descripcion:</label>
+        <input id="descripcion" type="text" th:field="*{descripcion}">
 
-    <label for="descripcion">Descripcion:</label>
-    <input id="descripcion" type="text" th:field="*{descripcion}">
-
-    <button>Guardar Cambios</button>
-</form>
+        <button type="submit" class="btn btn-dark text-decoration-none center">Listo</button>
+    </form>
 
 </body>
 </html>
