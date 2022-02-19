@@ -37,8 +37,13 @@ public class UsuarioController {
     @GetMapping(value = "/perfil/{username}")
     public String perfil(@PathVariable(value = "username") String username, Model model) {
         Usuario usuario = usuarioService.findByUsername(username).orElse(null);
+
+        if(usuario == null){
+            return "redirect:/usuarios/listar";
+        }
+
         model.addAttribute("usuario", usuario);
-        model.addAttribute("cantidad",usuario.getPublicaciones().size());
+        model.addAttribute("cantidad", usuario.getPublicaciones().size());
         model.addAttribute("titulo", "Perfil del usuario");
         return "perfil-usuario";
     }
@@ -46,12 +51,16 @@ public class UsuarioController {
     @GetMapping(value = "/info/{id}")
     public String info(@PathVariable(value = "id") Integer id, Model model) {
         Usuario usuario = usuarioService.findById(id).orElse(null);
+
+        if (usuario == null) {
+            return "redirect:/usuarios/listar";
+        }
+
         model.addAttribute("usuario", usuario);
-        model.addAttribute("cantidad",usuario.getPublicaciones().size());
+        model.addAttribute("cantidad", usuario.getPublicaciones().size());
         model.addAttribute("titulo", "Perfil del usuario");
         return "info-usuario";
     }
-
 
     @GetMapping(value = "/crear")
     public String crear(Model model) {
@@ -89,6 +98,9 @@ public class UsuarioController {
 
     @GetMapping(value = "/editar/{id}")
     public String editar(@PathVariable(value = "id") Integer id, Model model) {
+        if (id < 0) {
+            return "redirect:/usuarios/listar";
+        }
         model.addAttribute("titulo", "Datos del usuario");
         model.addAttribute("usuario", usuarioService.findById(id));
         return "editar-usuario";
