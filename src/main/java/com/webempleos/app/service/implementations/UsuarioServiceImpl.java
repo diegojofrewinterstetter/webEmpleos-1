@@ -5,13 +5,20 @@ import com.webempleos.app.models.repository.UsuarioRepository;
 import com.webempleos.app.service.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
-public class UsuarioServiceImpl implements UsuarioService {
+public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -51,4 +58,18 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuarioRepository.deleteById(id);
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Usuario usuario = usuarioRepository.findByUsername(username).orElse(null);
+
+        if (usuario == null) {
+            throw new UsernameNotFoundException("Usuario no encontrado");
+        }
+
+        List<GrantedAuthority> autoridades = usuario.getAutoridades().stream()
+                .map(autoridad -> new SimpleGrantedAuthority(autoridad.getAutoridad()))
+                .collect(Collectors.toList());
+
+        return new User(usuario.getUsername(), usuario.getPassword(), usuario.isAlta(), usuario.isAlta(), usuario.isAlta(), usuario.isAlta(), autoridades);
+    }
 }
