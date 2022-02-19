@@ -1,6 +1,7 @@
 package com.webempleos.app.models.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -24,5 +25,5 @@ public class Categoria implements Serializable{
     private String nombre;
 
     @OneToMany(cascade = CascadeType.MERGE,mappedBy = "categoria")
-    private List<Publicacion> publicaciones;
+    private List<Publicacion> publicaciones = new ArrayList<>();
 }

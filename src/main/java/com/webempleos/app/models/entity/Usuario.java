@@ -12,6 +12,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -49,7 +50,7 @@ public class Usuario implements Serializable {
     private String descripcion;
 
     @OneToMany(cascade = {CascadeType.MERGE}, mappedBy = "usuario")
-    private List<Publicacion> publicaciones;
+    private List<Publicacion> publicaciones = new ArrayList<>();
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_habilidad")
     private Habilidad habilidad;
@@ -58,7 +59,7 @@ public class Usuario implements Serializable {
     @JoinTable(name = "usuarios_autoridades", joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_autoridad", referencedColumnName = "id"),
             uniqueConstraints = {@UniqueConstraint(columnNames = {"id_usuario", "id_autoridad"})})
-    private List<Autoridad> autoridades;
+    private List<Autoridad> autoridades = new ArrayList<>();
 
     public byte[] getImagen() {
         return imagen;

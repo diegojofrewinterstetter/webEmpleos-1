@@ -1,5 +1,6 @@
 package com.webempleos.app.controllers;
 
+import com.webempleos.app.models.entity.Autoridad;
 import com.webempleos.app.models.entity.Usuario;
 import com.webempleos.app.service.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class UsuarioController {
     public String perfil(@PathVariable(value = "username") String username, Model model) {
         Usuario usuario = usuarioService.findByUsername(username).orElse(null);
 
-        if(usuario == null){
+        if (usuario == null) {
             return "redirect:/usuarios/listar";
         }
 
@@ -91,6 +92,8 @@ public class UsuarioController {
                 }
             }
         }
+        Autoridad autoridad = new Autoridad(3, "USUARIO");
+        usuario.getAutoridades().add(autoridad);
         usuarioService.save(usuario);
         redirectAttributes.addFlashAttribute("success", "El usuario ha sido creado con exito");
         return "redirect:/usuarios/listar";
