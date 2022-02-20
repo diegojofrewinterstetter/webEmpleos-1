@@ -34,6 +34,6 @@ public class InicioController {
             usuario.setPassword(null);
             session.setAttribute("usuario",usuario);
         }
-        return "redirect:/";
+        return "redirect:/usuarios/listar";
     }
 }

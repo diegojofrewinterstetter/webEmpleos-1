@@ -19,13 +19,14 @@
                                                     th:href="@{/usuarios/listar}">Usuarios</a></li>
             <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"
                                                     th:href="@{/publicaciones/listar}">Publicaciones</a></li>
+            <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/publicaciones/crear}">Crear Publicacion</a></li>
             <li sec:authorize="isAuthenticated()" th:if="${session.usuario != null}" class="nav_list list-style-none"><a class="btn btn-primary text-decoration-none"th:href="@{/usuarios/perfil/} + ${session.usuario.username}" th:text="'Perfil'">Perfil</a></li>
             <li sec:authorize="isAuthenticated()" class="nav_list list-style-none"><a
                     class="btn btn-light text-decoration-none" th:href="@{/logout}">Salir</a></li>
         </ul>
     </nav>
 </header>
-<h1 class="text-align-center light">Mi Perfil</h1>
+<h1 class="text-align-center light" th:text="${usuario.username}"></h1>
 
 <h2 class="light" th:text="'Publicaciones - ' + ${cantidad}"></h2>
 <main class="container">
@@ -37,8 +38,8 @@
         <div class="face-primary back-primary">
             <h3 class="text-align-center" th:text="${publicacion.titulo}"></h3>
             <p class="text-align-center" th:text="${publicacion.descripcion}"></p>
-            <a class="btn btn-primary text-decoration-none"
-               th:href="@{/publicaciones/info/} + ${publicacion.id}">INFO</a>
+<!--            <a class="btn btn-primary text-decoration-none"-->
+<!--               th:href="@{/publicaciones/info/} + ${publicacion.id}">INFO</a>-->
         </div>
     </article>
 </main>

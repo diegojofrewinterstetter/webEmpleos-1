@@ -20,6 +20,16 @@
             <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/usuarios/listar}">Usuarios</a></li>
             <li class="nav_list list-style-none"><a class="btn btn-primary text-decoration-none"th:href="@{/publicaciones/listar}">Publicaciones</a></li>
             <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/publicaciones/crear}">Crear Publicacion</a></li>
+            <li class="nav_list list-style-none dropdown">
+                <a class="btn btn-light text-decoration-none"th:href="@{/publicaciones/crear}">Categorias</a>
+            <div class="dropdown-content">
+                <a>Programacion</a>
+                <a>Educacion</a>
+                <a>Alimentacion</a>
+                <a>Fitnes</a>
+                <a>Finanzas</a>
+            </div>
+            </li>
             <li sec:authorize="isAuthenticated()" th:if="${session.usuario != null}" class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/usuarios/perfil/} + ${session.usuario.username}" th:text="'Perfil'">Perfil</a></li>
             <li sec:authorize="isAuthenticated()" class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/logout}">Salir</a></li>
         </ul>
@@ -37,7 +47,7 @@
             <h3 class="text-align-center" th:text="${publicacion.titulo}"></h3>
             <p class="text-align-center" th:text="${publicacion.descripcion}"></p>
             <div class="link">
-                <a class="btn btn-primary text-decoration-none" th:href="@{/publicaciones/info/} + ${publicacion.id}">Info</a>
+                <a class="btn btn-primary text-decoration-none" th:href="@{/usuarios/perfil/} + ${publicacion.usuario.username}">Info</a>
             </div>
         </div>
     </article>

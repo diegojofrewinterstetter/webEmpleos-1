@@ -13,8 +13,8 @@
         <img class="nav_img" src="/images/logo.jpg" alt="Logo">
         <ul>
             <li class="nav_list list-style-none"><a class="btn btn-primary text-decoration-none"th:href="@{/}">Inicio</a></li>
-            <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/usuarios/listar}">Usuarios</a></li>
-            <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/publicaciones/listar}">Publicaciones</a></li>
+            <li sec:authorize="isAuthenticated()" class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/usuarios/listar}">Usuarios</a></li>
+            <li sec:authorize="isAuthenticated()" class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/publicaciones/listar}">Publicaciones</a></li>
             <li sec:authorize="isAnonymous()" class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/index}">Ingresar</a></li>
             <li sec:authorize="isAnonymous()" class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/usuarios/crear}">Registrarse</a></li>
             <li sec:authorize="isAuthenticated()" class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/logout}">Salir</a></li>

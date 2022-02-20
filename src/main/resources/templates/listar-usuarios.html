@@ -18,7 +18,8 @@
             <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/}">Inicio</a></li>
             <li class="nav_list list-style-none"><a class="btn btn-primary text-decoration-none"th:href="@{/usuarios/listar}">Usuarios</a></li>
             <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/publicaciones/listar}">Publicaciones</a></li>
-            <li sec:authorize="isAuthenticated()" th:if="${session.usuario != null}" class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/usuarios/perfil/} + ${session.usuario.username}" th:text="'Perfil'">Perfil</a></li>
+            <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/publicaciones/crear}">Crear Publicacion</a></li>
+            <li sec:authorize="isAuthenticated()" th:if="${session.usuario != null}" class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/usuarios/perfil/} + ${session.usuario.username}" >Perfil</a></li>
             <li sec:authorize="isAuthenticated()" class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/logout}">Salir</a></li>
         </ul>
     </nav>
@@ -64,7 +65,7 @@
             <h3 class="text-align-center" th:text="${usuario.username}"></h3>
             <h4 class="text-align-center" th:text="${usuario.descripcion}"></h4>
             <h4 class="text-align-center" th:text="${usuario.email}"></h4>
-            <a class="btn btn-light text-decoration-none" th:href="@{/usuarios/info/} + ${usuario.id}">Ir al perfil</a>
+            <a class="btn btn-light text-decoration-none" th:href="@{/usuarios/perfil/} + ${usuario.username}">Ir al perfil</a>
         </div>
     </article>
 </main>
