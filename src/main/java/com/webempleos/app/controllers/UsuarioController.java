@@ -57,7 +57,7 @@ public class UsuarioController {
             return "redirect:/usuarios/listar";
         }
 
-        model.addAttribute("usuario", usuario);
+        model.addAttribute("usuarioInfo", usuario);
         model.addAttribute("cantidad", usuario.getPublicaciones().size());
         model.addAttribute("titulo", "Perfil del usuario");
         return "info-usuario";

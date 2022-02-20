@@ -2,6 +2,8 @@
 package com.webempleos.app.controllers;
 
 import com.webempleos.app.models.entity.Publicacion;
+import com.webempleos.app.models.entity.Usuario;
+import com.webempleos.app.service.interfaces.CategoriaService;
 import com.webempleos.app.service.interfaces.PublicacionService;
 
 import java.io.IOException;
@@ -30,6 +32,8 @@ public class PublicacionController {
     private PublicacionService publicacionService;
     @Autowired
     private UsuarioService usuarioService;
+    @Autowired
+    private CategoriaService categoriaService;
 
     @GetMapping("/listar")
     public String listar(Model model) {
@@ -42,19 +46,23 @@ public class PublicacionController {
     public String crear(Model model) {
         model.addAttribute("titulo", "Formulario de la publicacion");
         model.addAttribute("publicacion", new Publicacion());
+        model.addAttribute("categorias", categoriaService.findAll());
         return "form-publicacion";
     }
 
     @PostMapping("/crear/{nombreUser}")
     public String crear(@PathVariable(value = "nombreUser") String nombreUser, @Valid Publicacion publicacion
             , BindingResult result, @RequestParam(name = "foto", required = false) MultipartFile foto
-            , RedirectAttributes redirectAttributes,Model model) {
+            , RedirectAttributes redirectAttributes, Model model) {
 
         if (result.hasErrors()) {
             model.addAttribute("titulo", "Formulario de la publicacion");
             return "form-publicacion";
         }
-        publicacion.setUsuario(usuarioService.findByNombre(nombreUser).orElse(null));
+
+        Usuario usuario = usuarioService.findByUsername(nombreUser).orElse(null);
+        publicacion.setUsuario(usuario);
+        usuario.getPublicaciones().add(publicacion);
         byte[] contenido = null;
 
         //Verificamos que el archivo no este vacio
@@ -115,7 +123,7 @@ public class PublicacionController {
         }
 
         Publicacion publicacion = publicacionService.findById(id).orElse(null);
-        if(publicacion!=null){
+        if (publicacion != null) {
             model.addAttribute("usuario", publicacion.getUsuario());
             model.addAttribute("publicacion", publicacion);
         }

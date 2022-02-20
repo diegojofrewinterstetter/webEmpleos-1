@@ -49,7 +49,7 @@ public class Usuario implements Serializable {
     private String educacion;
     private String descripcion;
 
-    @OneToMany(cascade = {CascadeType.MERGE}, mappedBy = "usuario")
+    @OneToMany(cascade = {CascadeType.MERGE}, mappedBy = "usuario",fetch = FetchType.LAZY)
     private List<Publicacion> publicaciones;
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_habilidad")
@@ -63,6 +63,7 @@ public class Usuario implements Serializable {
 
     {
         this.autoridades = new ArrayList<>();
+        this.publicaciones=new ArrayList<>();
     }
 
     public byte[] getImagen() {
