@@ -4,11 +4,11 @@ import com.webempleos.app.models.entity.Autoridad;
 import com.webempleos.app.models.entity.Usuario;
 import com.webempleos.app.service.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,6 +26,8 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping(value = "/listar")
     public String listar(Model model) {
@@ -92,20 +94,26 @@ public class UsuarioController {
                 }
             }
         }
-        Autoridad autoridad = new Autoridad(3, "USUARIO");
-        usuario.getAutoridades().add(autoridad);
+        if(usuario.getAutoridades().isEmpty()){
+            Autoridad autoridad = new Autoridad(3, "USUARIO");
+            usuario.getAutoridades().add(autoridad);
+        }
+        if(passwordEncoder.upgradeEncoding(usuario.getPassword())){
+            usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+        }
         usuarioService.save(usuario);
         redirectAttributes.addFlashAttribute("success", "El usuario ha sido creado con exito");
         return "redirect:/usuarios/listar";
     }
 
-    @GetMapping(value = "/editar/{id}")
-    public String editar(@PathVariable(value = "id") Integer id, Model model) {
-        if (id < 0) {
+    @GetMapping(value = "/editar/{username}")
+    public String editar(@PathVariable(value = "username") String username, Model model) {
+        Usuario usuario = usuarioService.findByUsername(username).orElse(null);
+        if (usuario == null) {
             return "redirect:/usuarios/listar";
         }
         model.addAttribute("titulo", "Datos del usuario");
-        model.addAttribute("usuario", usuarioService.findById(id));
+        model.addAttribute("usuarioEdicion", usuario);
         return "editar-usuario";
     }
 

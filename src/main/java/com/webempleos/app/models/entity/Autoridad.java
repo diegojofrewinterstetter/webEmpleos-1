@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 
 @Getter
@@ -23,4 +24,12 @@ public class Autoridad implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String autoridad;
+
+    public Autoridad(Integer id, String autoridad) {
+        this.id = id;
+        this.autoridad = autoridad;
+    }
+
+    @ManyToMany
+    private List<Usuario> usuarios;
 }
