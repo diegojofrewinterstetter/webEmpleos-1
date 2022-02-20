@@ -5,8 +5,8 @@
   --primary: #be0e54;
   --primary: #33ff4e;
   --primary: #8c38ff;
-  --primary: #f30049;
   --primary: #2a3ff5;
+  --primary: #f30049;
   --light: #eeeeee;
   --dark: #227246;
   --dark: #69082e;
@@ -100,7 +100,7 @@ h1 {
   position: relative;
   /* border: thin solid var(--dark); */
   border-radius: 15px;
-  transition: color 0.5s ease;
+  transition: color 0.5s ease,box-shadow 0.5s ease;
   z-index: 1;
 }
 
@@ -118,6 +118,7 @@ h1 {
 
 .btn-dark:hover {
   color: var(--light);
+  box-shadow: 0 5px 10px var(--dark);
 }
 
 .btn-dark:hover::before {
@@ -155,7 +156,37 @@ h1 {
   width: 100%;
   border-radius: 15px;
 }
-/*Btn secondary*/
+
+.btn-secondary {
+  color: var(--dark);
+  background-color: var(--light);
+  position: relative;
+  border-radius: 15px;
+  transition: color 0.5s ease;
+  z-index: 1;
+  box-shadow: 0 5px 10px var(--light);
+}
+
+.btn-secondary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0px;
+  height: 100%;
+  background-color: var(--primary);
+  transition: width 0.5s ease, border-radius 0.5s ease;
+  z-index: -1;
+}
+
+.btn-secondary:hover {
+  color: var(--light);
+}
+
+.btn-secondary:hover::before {
+  width: 100%;
+  border-radius: 15px;
+}
 
 /*Tarjetas*/
 .card {
@@ -378,8 +409,8 @@ header {
 }
 
 .dropdown-content a {
-  background-color: var(--light);
-  color: var(--dark);
+  /*background-color: var(--light);
+  color: var(--dark);*/
   padding: 12px 16px;
   display: block;
   cursor:pointer;
@@ -390,6 +421,12 @@ header {
 }
 
 .dropdown-content a:hover{
-color:var(--light);
+/*color:var(--light);
     background-color: var(--primary);
+}*/
+
+.align{
+display: flex;
+  justify-content: center;
+  align-items: center;
 }

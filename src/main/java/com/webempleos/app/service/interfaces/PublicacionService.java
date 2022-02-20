@@ -9,6 +9,8 @@ public interface PublicacionService {
 
     List<Publicacion> findAll();
 
+    List<Publicacion> findAllByCategoriaNombre(String nombreCategoria);
+
     Optional<Publicacion> findById(Integer id);
 
     void save(Publicacion publicacion);

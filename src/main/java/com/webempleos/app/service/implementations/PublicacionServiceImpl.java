@@ -15,10 +15,14 @@ public class PublicacionServiceImpl implements PublicacionService {
     @Autowired
     private PublicacionRepository publicacionRepository;
 
-
     @Override
     public List<Publicacion> findAll() {
         return publicacionRepository.findAll();
+    }
+
+    @Override
+    public List<Publicacion> findAllByCategoriaNombre(String nombreCategoria) {
+        return publicacionRepository.findAllByCategoriaNombre(nombreCategoria);
     }
 
     @Override
