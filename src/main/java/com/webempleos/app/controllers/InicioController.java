@@ -25,7 +25,7 @@ public class InicioController {
         return "index";
     }
 
-    @GetMapping(value = "/index")
+    @GetMapping(value = "/ingresar")
     public String ingreso(Authentication authentication, HttpSession session) {
         String username = authentication.getName();
 

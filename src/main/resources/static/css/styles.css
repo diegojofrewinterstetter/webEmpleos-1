@@ -21,15 +21,18 @@ html {
   font-family: sans-serif;
 }
 
-/* .logo{
-  width: 100%;
-  background-image: url('../images/5479107.jpg');
-} */
-
 body {
-  background-color: var(--dark);
+  background-color: var(--light);
 }
 
+#fondo{
+background-image:url("../images/logoMi.png");
+  background-repeat:no-repeat;
+  background-position:center center;
+  height:1800px;
+  background-attachment:fixed;
+  background-size:100vh ;
+}
 h1 {
   margin-bottom: 30px;
   color: var(--light);
@@ -43,6 +46,7 @@ h1 {
   width: 80%;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom:20px;
 }
 
 /*Botones*/
@@ -443,4 +447,9 @@ align-items:center;
 color:var(--light);
 background:#000;
 background:var(--dark);
+}
+
+footer{
+position:relative;
+bottom:0;
 }

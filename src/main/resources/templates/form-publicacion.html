@@ -6,14 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
-    <link rel="shortcut icon" href="../images/logo.jpg">
+    <link rel="shortcut icon" href="/images/logoMi.png">
     <title>MIWORKS</title>
 </head>
 
-<body>
+<body id="fondo">
 <header>
     <nav class="nav">
-        <img class="nav_img" src="/images/logo.jpg" alt="Logo">
+        <img class="nav_img" src="/images/logoMi.png" alt="Logo">
         <ul>
             <li class="nav_list list-style-none"><a class="btn btn-secondary text-decoration-none"th:href="@{/}">Inicio</a></li>
             <li class="nav_list list-style-none"><a class="btn btn-secondary text-decoration-none"th:href="@{/usuarios/listar}">Usuarios</a></li>
@@ -21,7 +21,7 @@
                 <a class="btn btn-primary text-decoration-none"href="#">Publicaciones</a>
                 <div class="dropdown-content">
                     <a class="btn btn-primary text-decoration-none text-align-center"th:href="@{/publicaciones/listar}">Ver Todas</a>
-                    <a class="btn btn-primary text-decoration-none text-align-center"th:href="@{/publicaciones/crear}">Crear Publicacion</a>
+                    <a class="btn btn-primary text-decoration-none text-align-center"th:href="@{/publicaciones/crear}">Crear</a>
                 </div>
             </li>
             <li class="nav_list list-style-none dropdown">
@@ -71,6 +71,35 @@
         <a class="btn btn btn-light text-decoration-none center" th:href="@{/publicaciones/listar}">Volver</a>
     </form>
 </main>
-</body>
+<footer>
+    <div class="footer-up">
+        <div>
+            <h3>Mas informacion de la compania</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aperiam, atque doloremque earum et
+                exercitationem id, illo ipsam libero necessitatibus neque odit placeat praesentium, quaerat quas sequi
+                totam veritatis voluptate?</p>
+        </div>
+        <div>
+            <h3>Redes Sociales</h3>
+            <p>Instagram : MiWorks@gmail.com</p>
+            <p>Twitter : MiWorks@gmail.com</p>
+            <p>Facebook : MiWorks@gmail.com</p>
+            <p>Whatsapp : 343212312</p>
+            <p>Telegram : MiWorks</p>
+        </div>
+        <div>
+            <h3>Informacion de Contacto</h3>
+            <p>Telefono de Contacto : 192831231</p>
+            <p>Email de Contacto : MiWorks@gmail.com</p>
+        </div>
 
+    </div>
+    <div class="footer-down">
+        <p>© 2022 Todos los Derechos Reservados</p>
+        <a class="light text-decoration-none" href="#">Informacion Compañia </a>
+        <a class="light text-decoration-none" href="#">Privacion y Politica </a>
+        <a class="light text-decoration-none" href="#">Terminos y Condiciones</a>
+    </div>
+</footer>
+</body>
 </html>
