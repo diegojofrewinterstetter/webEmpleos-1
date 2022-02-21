@@ -3,20 +3,24 @@ package com.webempleos.app.controllers;
 import com.webempleos.app.models.entity.Usuario;
 import com.webempleos.app.service.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.io.IOException;
 
 @Controller
-@RequestMapping(value = "usuarios")
+@RequestMapping(value = "/usuarios")
+@SessionAttributes(value = "usuario")
 public class UsuarioController {
 
     @Autowired
@@ -26,7 +30,36 @@ public class UsuarioController {
     public String listar(Model model) {
         model.addAttribute("titulo", "Listado de usuarios");
         model.addAttribute("usuarios", usuarioService.findAll());
+//        model.addAttribute("usuarios", usuarioService.findAll(Sort.by("apellido").ascending()));
         return "listar-usuarios";
+    }
+
+    @GetMapping(value = "/perfil/{username}")
+    public String perfil(@PathVariable(value = "username") String username, Model model) {
+        Usuario usuario = usuarioService.findByUsername(username).orElse(null);
+
+        if(usuario == null){
+            return "redirect:/usuarios/listar";
+        }
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("cantidad", usuario.getPublicaciones().size());
+        model.addAttribute("titulo", "Perfil del usuario");
+        return "perfil-usuario";
+    }
+
+    @GetMapping(value = "/info/{id}")
+    public String info(@PathVariable(value = "id") Integer id, Model model) {
+        Usuario usuario = usuarioService.findById(id).orElse(null);
+
+        if (usuario == null) {
+            return "redirect:/usuarios/listar";
+        }
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("cantidad", usuario.getPublicaciones().size());
+        model.addAttribute("titulo", "Perfil del usuario");
+        return "info-usuario";
     }
 
     @GetMapping(value = "/crear")
@@ -37,18 +70,24 @@ public class UsuarioController {
     }
 
     @PostMapping(value = "/crear")
-    public String crear(Usuario usuario, RedirectAttributes redirectAttributes, @RequestParam(name = "imagen", required = false) MultipartFile imagen) {
-        byte[] contenido = null;
+    public String crear(@Valid Usuario usuario,
+                        BindingResult result, @RequestParam(value = "foto", required = false) MultipartFile foto, RedirectAttributes redirectAttributes) {
 
-        //Verificamos que el archivo no este vacio
-        if (!imagen.isEmpty()) {
+        if (result.hasErrors()) {
+            return "form-usuario";
+        }
+
+        byte[] contenido = null;
+//        Verificamos que el archivo no este vacio
+        if (!foto.isEmpty()) {
             //Verficiamos que el contenido del archivo sea una foto tipo jpg o png
-            if (imagen.getContentType().endsWith("jpeg") || imagen.getContentType().endsWith("png")) {
+            if (foto.getContentType().endsWith("jpeg") || foto.getContentType().endsWith("png")) {
                 try {
-                    contenido = imagen.getBytes();
+                    contenido = foto.getBytes();
                     usuario.setImagen(contenido);
                 } catch (IOException e) {
                     e.printStackTrace();
+                    System.out.println("Hola el error es : " + e.getMessage());
                 }
             }
         }
@@ -57,10 +96,13 @@ public class UsuarioController {
         return "redirect:/usuarios/listar";
     }
 
-    @GetMapping(value = "/editar")
-    public String editar(Model model) {
+    @GetMapping(value = "/editar/{id}")
+    public String editar(@PathVariable(value = "id") Integer id, Model model) {
+        if (id < 0) {
+            return "redirect:/usuarios/listar";
+        }
         model.addAttribute("titulo", "Datos del usuario");
-        model.addAttribute("usuario", new Usuario());
+        model.addAttribute("usuario", usuarioService.findById(id));
         return "editar-usuario";
     }
 

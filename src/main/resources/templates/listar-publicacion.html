@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="shortcut icon" href="../images/logo.jpg">
+    <link rel="shortcut icon" href="../images/logo.jpg">
+    <title>MIWORKS</title>
+</head>
+
+<body>
+<header>
+    <nav class="nav">
+        <img class="nav_img" src="/images/logo.jpg" alt="Logo">
+        <ul>
+            <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/}">Inicio</a></li>
+            <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/usuarios/listar}">Usuarios</a></li>
+            <li class="nav_list list-style-none"><a class="btn btn-primary text-decoration-none"th:href="@{/publicaciones/listar}">Publicaciones</a></li>
+            <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/publicaciones/crear}">Crear Publicacion</a></li>
+            <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/usuarios/perfil/} + 'fede'">Mi perfil</a></li>
+        </ul>
+    </nav>
+</header>
+<h1 class="text-align-center" th:text="${titulo}"></h1>
+<a class="btn btn-primary text-decoration-none" th:href="@{/publicaciones/crear}">Crear publicacion</a>
+<main class="container">
+    <article class="card" th:each="publicacion : ${publicaciones}">
+        <div class="face-primary front-primary">
+            <img th:if="${publicacion.imagen != null}" th:src="${'/publicaciones/imagen/' + publicacion.id}" alt="Foto">
+            <h3 class="text-align-center" th:text="${publicacion.titulo}"></h3>
+        </div>
+        <div class="face-primary back-primary">
+            <h3 class="text-align-center" th:text="${publicacion.titulo}"></h3>
+            <p class="text-align-center" th:text="${publicacion.descripcion}"></p>
+            <div class="link">
+                <a class="btn btn-primary text-decoration-none" th:href="@{/publicaciones/info/} + ${publicacion.id}">Info</a>
+            </div>
+        </div>
+    </article>
+</main>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="shortcut icon" href="../images/logo.jpg">
+    <title>MIWORKS</title>
+</head>
+
+<body>
+<header>
+    <nav class="nav">
+        <img class="nav_img" src="/images/logo.jpg" alt="Logo">
+        <ul>
+            <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none" th:href="@{/}">Inicio</a>
+            </li>
+            <li class="nav_list list-style-none"><a class="btn btn-primary text-decoration-none"
+                                                    th:href="@{/usuarios/listar}">Usuarios</a></li>
+            <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"
+                                                    th:href="@{/publicaciones/listar}">Publicaciones</a></li>
+            <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"
+                                                    th:href="@{/usuarios/perfil/} + 'fede'">Mi perfil</a></li>
+        </ul>
+    </nav>
+</header>
+<h1 class="light text-aling-center">Formulario de registro</h1>
+<main class="container">
+    <form class="form-register" th:action="@{/usuarios/crear}" th:object="${usuario}" method="POST" enctype="multipart/form-data">
+        <label class="light" for="nombre">Nombre:</label>
+        <input id="nombre" type="text" th:field="*{nombre}">
+        <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"
+             th:errorclass="'alert alert-danger'"></div>
+
+        <label class="light" for="apellido">Apellido:</label>
+        <input id="apellido" type="text" th:field="*{apellido}">
+        <div th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"
+             th:errorclass="'alert alert-danger'"></div>
+
+        <label class="light" for="username">Nombre de usuario:</label>
+        <input id="username" type="text" th:field="*{username}">
+        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+             th:errorclass="'alert alert-danger'"></div>
+
+        <label class="light" for="documento">DNI:</label>
+        <input id="documento" type="number" th:field="*{documento}">
+        <div th:if="${#fields.hasErrors('documento')}" th:errors="*{documento}"
+             th:errorclass="'alert alert-danger'"></div>
+
+        <label class="light" for="fechanacimiento">Fecha de nacimiento:</label>
+        <input id="fechanacimiento" type="date" th:field="*{fechaNacimiento}">
+        <div th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"
+             th:errorclass="'alert alert-danger'"></div>
+
+        <label class="light" for="password">Contraseña:</label>
+        <input id="password" type="text" th:field="*{password}">
+        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+             th:errorclass="'alert alert-danger'"></div>
+
+        <label class="light" for="email">Correo:</label>
+        <input id="email" type="email" th:field="*{email}">
+        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+             th:errorclass="'alert alert-danger'"></div>
+
+        <label class="light" for="foto">Añadir imagen:</label>
+        <input class="controls" id="foto" type="file" name="foto">
+
+        <label class="light" for="educacion">Educacion:</label>
+        <input class="controls" id="educacion" type="text" th:field="*{educacion}">
+
+        <label class="light" for="descripcion">Descripcion:</label>
+        <input id="descripcion" type="text" th:field="*{descripcion}">
+
+        <button type="submit" class="btn btn-dark text-decoration-none center">Listo</button>
+        <a class="btn btn-light text-decoration-none center" th:href="@{/usuarios/listar}">Volver</a>
+</form>
+</main>
+</body>
+
+</html>

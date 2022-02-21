@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="shortcut icon" href="../images/logo.jpg">
+    <title>MIWORKS</title>
+</head>
+
+<body>
+<header>
+    <nav class="nav">
+        <img class="nav_img" src="/images/logo.jpg" alt="Logo">
+        <ul>
+            <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none" th:href="@{/}">Inicio</a>
+            </li>
+            <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"
+                                                    th:href="@{/usuarios/listar}">Usuarios</a></li>
+            <li class="nav_list list-style-none"><a class="btn btn-primary text-decoration-none"
+                                                    th:href="@{/publicaciones/listar}">Publicaciones</a></li>
+            <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"
+                                                    th:href="@{/usuarios/perfil/} + 'fede'">Mi perfil</a></li>
+        </ul>
+    </nav>
+</header>
+<h1 class="text-align-center" th:text="${titulo}"></h1>
+<main class="container">
+    <form class="form-register" th:action="@{/publicaciones/crear/}+'Fede'" th:object="${publicacion}" method="post"
+          enctype="multipart/form-data">
+
+        <label class="light" for="titulo">Titulo:</label>
+        <input id="titulo" type="text" th:field="*{titulo}">
+        <div th:if="${#fields.hasErrors('titulo')}"
+             th:errors="*{titulo}" th:errorclass="'alert alert-danger'"></div>
+
+        <label class="light" for="descripcion">Descripción de la publicacion:</label>
+        <input id="descripcion" type="text" th:field="*{descripcion}">
+        <div th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"
+             th:errorclass="'alert alert-danger'"></div>
+
+        <label class="light" for="foto">Añadir Imagen:</label>
+        <input id="foto" type="file" name="foto">
+
+        <label class="light" for="disponibilidad">Disponibilidad Horaria:</label>
+        <input id="disponibilidad" type="text" th:field="*{disponibilidad}">
+        <div th:if="${#fields.hasErrors('disponibilidad')}"
+             th:errors="*{disponibilidad}" th:errorclass="'alert alert-danger'"></div>
+
+        <button class="btn btn-dark center" type="submit">Listo</button>
+        <a class="btn btn btn-light text-decoration-none center" th:href="@{/publicaciones/listar}">Volver</a>
+    </form>
+</main>
+</body>
+
+</html>

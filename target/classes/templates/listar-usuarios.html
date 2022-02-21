@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="shortcut icon" href="../images/logo.jpg">
+    <title>MIWORKS</title>
+</head>
+
+<body>
+<header>
+    <nav class="nav">
+        <img class="nav_img" src="/images/logo.jpg" alt="Logo">
+        <ul>
+            <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/}">Inicio</a></li>
+            <li class="nav_list list-style-none"><a class="btn btn-primary text-decoration-none"th:href="@{/usuarios/listar}">Usuarios</a></li>
+            <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/usuarios/crear}">Crear Usuario</a></li>
+            <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/publicaciones/listar}">Publicaciones</a></li>
+            <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/usuarios/perfil/} + 'fede'">Mi perfil</a></li>
+        </ul>
+    </nav>
+</header>
+<!--<table>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th> Nombre</th>-->
+<!--        <th> Apellido</th>-->
+<!--        <th> Documento</th>-->
+<!--        <th> Fecha de Nacimiento</th>-->
+<!--        <th> Correo</th>-->
+<!--        <th> Imagen</th>-->
+<!--        <th> Educacion</th>-->
+<!--        <th> Descripcion</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr th:each="usuario : ${usuarios}">-->
+<!--        <td th:text="${usuario.nombre}"></td>-->
+<!--        <td th:te alt="Foto Usuario"></td>-->
+<!--        </td>-->
+<!--        <td th:text="${usuario.apellido}"></td>-->
+<!--        <td th:text="${usuario.documento}"></td>-->
+<!--        <td th:text="${usuario.fechaNacimiento}"></td>-->
+<!--        <td th:text="${usuario.email}"></td>-->
+<!--        <td><img th:if="${usuario.imagen != null}"-->
+<!--                 th:src="${'/usuarios/imagen/' + usuario.id}">-->
+<!--        </td>-->
+<!--        <td th:text="${usuario.educacion}"></td>-->
+<!--        <td th:text="${usuario.descripcion}"></td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
+
+<main class="container">
+    <article class="card light" th:each="usuario : ${usuarios}">
+        <div class="face-primary front-primary">
+            <img th:if="${usuario.imagen != null}" th:src="${'/usuarios/imagen/' + usuario.id}" alt="Imagen del Usuario">
+            <h3 class="text-align-center" th:text="${usuario.username}"></h3>
+        </div>
+        <div class="face-primary back-primary">
+            <h3 class="text-align-center" th:text="${usuario.username}"></h3>
+            <h4 class="text-align-center" th:text="${usuario.descripcion}"></h4>
+            <h4 class="text-align-center" th:text="${usuario.email}"></h4>
+            <a class="btn btn-light text-decoration-none" th:href="@{/usuarios/info/} + ${usuario.id}">Ir al perfil</a>
+        </div>
+    </article>
+</main>
+</body>
+
+</html>

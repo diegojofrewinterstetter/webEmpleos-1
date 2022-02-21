@@ -3,6 +3,7 @@ package com.webempleos.app.models.entity;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ public class Categoria implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotBlank
     private String nombre;
 
     @OneToMany(cascade = CascadeType.MERGE,mappedBy = "categoria")
