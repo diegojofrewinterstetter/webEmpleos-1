@@ -14,12 +14,19 @@
 <body>
 <header>
     <nav class="nav">
+        <input type="checkbox" id="nav-check">
         <img class="nav_img" src="/images/logo.jpg" alt="Logo">
-        <ul>
-            <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/}">Inicio</a></li>
+        <div class="nav-btn">
+            <label for="nav-check">
+              <span></span>
+              <span></span>
+              <span></span>
+            </label>
+          </div>
+        <ul class="nav-links">
+            <li class="nav_list list-style-none"><a class="btn btn-primary text-decoration-none"th:href="@{/}">Inicio</a></li>
             <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/usuarios/listar}">Usuarios</a></li>
-            <li class="nav_list list-style-none"><a class="btn btn-primary text-decoration-none"th:href="@{/publicaciones/listar}">Publicaciones</a></li>
-            <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/publicaciones/crear}">Crear Publicacion</a></li>
+            <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/publicaciones/listar}">Publicaciones</a></li>
             <li class="nav_list list-style-none"><a class="btn btn-light text-decoration-none"th:href="@{/usuarios/perfil/} + 'fede'">Mi perfil</a></li>
         </ul>
     </nav>
