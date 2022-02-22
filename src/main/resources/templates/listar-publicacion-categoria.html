@@ -66,9 +66,9 @@
 
 <div>
     <nav class="nav-pagination">
-<a th:if="${publicaciones.number} > 0" class="btn btn-primary text-decoration-none" th:href="@{/publicaciones/listar(page = ${publicaciones.number - 1})}">Anterior</a>
+        <a th:if="${publicaciones.number} > 0" class="btn btn-primary text-decoration-none" th:href="@{/categorias/listar(page = ${publicaciones.number - 1})}">Anterior</a>
         <span class="btn btn-primary" th:text="${publicaciones.number + 1} + ' de ' + ${publicaciones.totalPages}"></span>
-<a th:if="${publicaciones.number} < ${publicaciones.totalPages -1}"class="btn btn-primary text-decoration-none" th:href="@{/publicaciones/listar(page = ${publicaciones.number + 1})}">Siguiente</a>
+        <a th:if="${publicaciones.number} < ${publicaciones.totalPages -1}"class="btn btn-primary text-decoration-none" th:href="@{/categorias/listar(page = ${publicaciones.number + 1})}">Siguiente</a>
     </nav>
 </div>
 

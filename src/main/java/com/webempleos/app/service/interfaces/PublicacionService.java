@@ -3,6 +3,7 @@ package com.webempleos.app.service.interfaces;
 import com.webempleos.app.models.entity.Publicacion;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +15,8 @@ public interface PublicacionService {
     List<Publicacion> findAllByCategoriaNombre(String nombreCategoria);
 
     Page<Publicacion> findAll(Pageable pageable);
+
+    Page<Publicacion> findAll(Specification<Publicacion> specification,Pageable pageable);
 
     Optional<Publicacion> findById(Integer id);
 

@@ -1,7 +1,7 @@
 :root {
   /*Muy bueno*/
-  --primary: #f30049;
   --primary: #2a3ff5;
+  --primary: #f30049;
   --primary: #8c38ff;
   --light: #eeeeee;
   --dark: #227246;
@@ -22,7 +22,7 @@ html {
 }
 
 body {
-  background-color: var(--light);
+  background-color: var(--dark);
 }
 
 #fondo{
@@ -458,15 +458,4 @@ top:100%;
 display:flex;
 justify-content:center;
 align-items:center;
-}
-
-.nav-pagination span{
-display:flex;
-justify-content:center;
-align-items:center;
-width: 140px;
-  height: 45px;
-  margin: 10px;
-  background-color:var(--primary);
-  color:var(--light);
 }

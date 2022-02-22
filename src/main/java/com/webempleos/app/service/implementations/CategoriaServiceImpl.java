@@ -26,6 +26,11 @@ public class CategoriaServiceImpl implements CategoriaService {
         }
 
     @Override
+    public Optional<Categoria> findByNombre(String nombre) {
+        return categoriaRepository.findByNombre(nombre);
+    }
+
+    @Override
     public void deleteById(Integer id) {
         categoriaRepository.deleteById(id);
         }

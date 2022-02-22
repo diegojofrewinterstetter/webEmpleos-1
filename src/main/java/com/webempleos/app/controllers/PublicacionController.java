@@ -49,10 +49,10 @@ public class PublicacionController {
     @GetMapping(value = "/listar")
     public String listar(Pageable page, Model model) {
         model.addAttribute("titulo", "Listado de publicaciones");
-        Page<Publicacion> paginasPublicaciones = publicacionService.findAll(PageRequest.of(page.getPageNumber(),3));
+        Page<Publicacion> paginasPublicaciones = publicacionService.findAll(PageRequest.of(page.getPageNumber(),6));
 //        Page<Publicacion> paginasPublicaciones = publicacionService.findAll(PageRequest.of(numPag, tamPag), Sort.by("titulo"));
         if (!paginasPublicaciones.hasContent()) {
-            paginasPublicaciones = publicacionService.findAll(PageRequest.of(0, 3));
+            paginasPublicaciones = publicacionService.findAll(PageRequest.of(0, 6));
             model.addAttribute("publicaciones", paginasPublicaciones);
             return "listar-publicacion";
         }
