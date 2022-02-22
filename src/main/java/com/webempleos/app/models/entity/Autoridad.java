@@ -30,6 +30,6 @@ public class Autoridad implements Serializable {
         this.autoridad = autoridad;
     }
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "autoridades")
     private List<Usuario> usuarios;
 }

@@ -451,5 +451,22 @@ background:var(--dark);
 
 footer{
 position:relative;
-bottom:0;
+top:100%;
+}
+
+.nav-pagination{
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.nav-pagination span{
+display:flex;
+justify-content:center;
+align-items:center;
+width: 140px;
+  height: 45px;
+  margin: 10px;
+  background-color:var(--primary);
+  color:var(--light);
 }

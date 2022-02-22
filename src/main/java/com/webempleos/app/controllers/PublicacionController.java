@@ -10,6 +10,10 @@ import java.io.IOException;
 
 import com.webempleos.app.service.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -35,10 +39,24 @@ public class PublicacionController {
     @Autowired
     private CategoriaService categoriaService;
 
-    @GetMapping("/listar")
-    public String listar(Model model) {
+//    @GetMapping("/listar")
+//    public String listar(Model model) {
+//        model.addAttribute("titulo", "Listado de publicaciones");
+//        model.addAttribute("publicaciones", publicacionService.findAll());
+//        return "listar-publicacion";
+//    }
+
+    @GetMapping(value = "/listar")
+    public String listar(Pageable page, Model model) {
         model.addAttribute("titulo", "Listado de publicaciones");
-        model.addAttribute("publicaciones", publicacionService.findAll());
+        Page<Publicacion> paginasPublicaciones = publicacionService.findAll(PageRequest.of(page.getPageNumber(),3));
+//        Page<Publicacion> paginasPublicaciones = publicacionService.findAll(PageRequest.of(numPag, tamPag), Sort.by("titulo"));
+        if (!paginasPublicaciones.hasContent()) {
+            paginasPublicaciones = publicacionService.findAll(PageRequest.of(0, 3));
+            model.addAttribute("publicaciones", paginasPublicaciones);
+            return "listar-publicacion";
+        }
+        model.addAttribute("publicaciones", paginasPublicaciones);
         return "listar-publicacion";
     }
 

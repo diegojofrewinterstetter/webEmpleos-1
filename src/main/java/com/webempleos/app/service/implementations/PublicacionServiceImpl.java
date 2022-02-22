@@ -4,6 +4,8 @@ import com.webempleos.app.models.entity.Publicacion;
 import com.webempleos.app.models.repository.PublicacionRepository;
 import com.webempleos.app.service.interfaces.PublicacionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +25,11 @@ public class PublicacionServiceImpl implements PublicacionService {
     @Override
     public List<Publicacion> findAllByCategoriaNombre(String nombreCategoria) {
         return publicacionRepository.findAllByCategoriaNombre(nombreCategoria);
+    }
+
+    @Override
+    public Page<Publicacion> findAll(Pageable pageable) {
+        return publicacionRepository.findAll(pageable);
     }
 
     @Override
