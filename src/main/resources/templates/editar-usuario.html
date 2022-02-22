@@ -42,7 +42,7 @@
 </header>
 <h1 th:text="${titulo}"></h1>
 <main class="container">
-    <form class="form-register" th:action="@{/usuarios/crear}" th:object="${usuario}" method="POST" enctype="multipart/form-data">
+    <form class="form-register" th:action="@{/usuarios/editar}" th:object="${usuario}" method="POST" enctype="multipart/form-data">
         <label class="light" for="nombre">Nombre:</label>
         <input id="nombre" type="text" th:field="*{nombre}">
         <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"
