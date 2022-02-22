@@ -94,11 +94,43 @@ public class UsuarioController {
                 }
             }
         }
-        if(usuario.getAutoridades().isEmpty()){
+        if (usuario.getAutoridades().isEmpty()) {
             Autoridad autoridad = new Autoridad(3, "USUARIO");
             usuario.getAutoridades().add(autoridad);
         }
-        if(passwordEncoder.upgradeEncoding(usuario.getPassword())){
+        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+        usuarioService.save(usuario);
+        redirectAttributes.addFlashAttribute("success", "El usuario ha sido creado con exito");
+        return "redirect:/usuarios/listar";
+    }
+
+    @PostMapping(value = "/editar")
+    public String editar(@Valid Usuario usuario,
+                         BindingResult result, @RequestParam(value = "foto", required = false) MultipartFile foto, RedirectAttributes redirectAttributes) {
+
+        if (result.hasErrors()) {
+            return "editar-usuario";
+        }
+
+        byte[] contenido = null;
+//        Verificamos que el archivo no este vacio
+        if (!foto.isEmpty()) {
+            //Verficiamos que el contenido del archivo sea una foto tipo jpg o png
+            if (foto.getContentType().endsWith("jpeg") || foto.getContentType().endsWith("png")) {
+                try {
+                    contenido = foto.getBytes();
+                    usuario.setImagen(contenido);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.out.println("Hola el error es : " + e.getMessage());
+                }
+            }
+        }
+        if (usuario.getAutoridades().isEmpty()) {
+            Autoridad autoridad = new Autoridad(3, "USUARIO");
+            usuario.getAutoridades().add(autoridad);
+        }
+        if (passwordEncoder.upgradeEncoding(usuario.getPassword())) {
             usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         }
         usuarioService.save(usuario);
