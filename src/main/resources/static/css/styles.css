@@ -1,8 +1,8 @@
 :root {
   /*Muy bueno*/
   --primary: #2a3ff5;
-  --primary: #f30049;
   --primary: #8c38ff;
+  --primary: #f30049;
   --light: #eeeeee;
   --dark: #227246;
   --dark: #69082e;
@@ -26,10 +26,10 @@ body {
 }
 
 #fondo{
-background-image:url("../images/logoMi.png");
+background-image:url("../images/rojito.png");
   background-repeat:no-repeat;
   background-position:center center;
-  height:1800px;
+  /*height:1800px;*/
   background-attachment:fixed;
   background-size:100vh ;
 }
@@ -47,6 +47,81 @@ h1 {
   margin-left: auto;
   margin-right: auto;
   margin-bottom:20px;
+}
+/*formulario busqueda*/
+.form-search{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-left: 20px;
+  margin-right: 13px;
+}
+
+.input-search{
+  height: 45px;
+  width: 0px;
+  padding: 0 20px;
+  color: var(--dark);
+  border-radius: 50px;
+  font-size: 20px;
+  transition: all .7s ease;
+}
+
+.icon{
+  position: absolute;
+  top:-4;
+  right: -4px;
+  width: 60px;
+  height: 60px;
+  background-color: var(--primary);
+  line-height: 60px;
+  border-radius: 50%;
+  text-align: center;
+  cursor: pointer;
+  border:none;
+  transition: .5s;
+}
+
+.icon span{
+  font-size: 25px;
+  color:var(--light);
+  line-height: 60px;
+  transition: all .7s ease;
+}
+
+.form-search:hover input{
+  width: 250px;
+}
+
+.form-search:hover .icon span{
+  transform: rotate(-360deg);
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
 }
 
 /*Botones*/

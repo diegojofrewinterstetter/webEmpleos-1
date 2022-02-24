@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="shortcut icon" href="/images/logoMi.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
     <title>MIWORKS</title>
 </head>
 
@@ -19,6 +21,16 @@
                                                     th:href="@{/}">Inicio</a></li>
             <li class="nav_list list-style-none"><a class="btn btn-secondary text-decoration-none"
                                                     th:href="@{/usuarios/listar}">Usuarios</a></li>
+            <li>
+                <form class="form-search" th:action="@{/publicaciones/buscar}" method="POST">
+                    <input class="input-search" type="text" name="valorBusqueda" placeholder="Buscar">
+                    <button type="submit" class="icon">
+                            <span class="material-icons material-icons-outlined">
+                                search
+                            </span>
+                    </button>
+                </form>
+            </li>
             <li class="nav_list list-style-none dropdown">
                 <a class="btn btn-primary text-decoration-none" href="#">Publicaciones</a>
                 <div class="dropdown-content">

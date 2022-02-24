@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="shortcut icon" href="/images/logoMi.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
     <title>MIWORKS</title>
 </head>
 
@@ -19,6 +21,22 @@
                                                     th:href="@{/}">Inicio</a></li>
             <li class="nav_list list-style-none"><a class="btn btn-secondary text-decoration-none"
                                                     th:href="@{/usuarios/listar}">Usuarios</a></li>
+<!--            <li>-->
+<!--                <form th:action="@{/publicaciones/buscar}" method="POST">-->
+<!--                    <input type="text" name="valorBusqueda">-->
+<!--                    <input type="submit" value="Buscar">-->
+<!--                </form>-->
+<!--            </li>-->
+            <li>
+                <form class="form-search" th:action="@{/publicaciones/buscar}" method="POST">
+                    <input class="input-search" type="text" name="valorBusqueda" placeholder="Buscar">
+                    <button type="submit" class="icon">
+                            <span class="material-icons material-icons-outlined">
+                                search
+                            </span>
+                    </button>
+                </form>
+            </li>
             <li class="nav_list list-style-none dropdown">
                 <a class="btn btn-primary text-decoration-none" href="#">Publicaciones</a>
                 <div class="dropdown-content">
@@ -66,9 +84,12 @@
 
 <div>
     <nav class="nav-pagination">
-<a th:if="${publicaciones.number} > 0" class="btn btn-primary text-decoration-none" th:href="@{/publicaciones/listar(page = ${publicaciones.number - 1})}">Anterior</a>
-        <span class="btn btn-primary" th:text="${publicaciones.number + 1} + ' de ' + ${publicaciones.totalPages}"></span>
-<a th:if="${publicaciones.number} < ${publicaciones.totalPages -1}"class="btn btn-primary text-decoration-none" th:href="@{/publicaciones/listar(page = ${publicaciones.number + 1})}">Siguiente</a>
+        <a th:if="${publicaciones.number} > 0" class="btn btn-primary text-decoration-none"
+           th:href="@{/publicaciones/listar(page = ${publicaciones.number - 1})}">Anterior</a>
+        <span class="btn btn-primary"
+              th:text="${publicaciones.number + 1} + ' de ' + ${publicaciones.totalPages}"></span>
+        <a th:if="${publicaciones.number} < ${publicaciones.totalPages -1}" class="btn btn-primary text-decoration-none"
+           th:href="@{/publicaciones/listar(page = ${publicaciones.number + 1})}">Siguiente</a>
     </nav>
 </div>
 

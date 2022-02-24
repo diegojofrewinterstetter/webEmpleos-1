@@ -3,10 +3,7 @@ package com.webempleos.app.specification;
 import com.webempleos.app.models.entity.Publicacion;
 import org.springframework.data.jpa.domain.Specification;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +13,7 @@ public class PublicacionSpecification {
         return (from, query, criteriaBuilder) -> {
             List<Predicate> condiciones = new ArrayList<>();
             if (publicacion.getTitulo() != null && !publicacion.getTitulo().trim().isEmpty()) {
-                Predicate condicion = criteriaBuilder.like(from.get("titulo"), "%" + publicacion.getTitulo());
+                Predicate condicion = criteriaBuilder.like(from.get("titulo"), "%" + publicacion.getTitulo() + "%");
                 condiciones.add(condicion);
             }
 

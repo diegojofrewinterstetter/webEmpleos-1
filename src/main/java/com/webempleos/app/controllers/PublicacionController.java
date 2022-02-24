@@ -9,11 +9,13 @@ import com.webempleos.app.service.interfaces.PublicacionService;
 import java.io.IOException;
 
 import com.webempleos.app.service.interfaces.UsuarioService;
+import com.webempleos.app.specification.PublicacionSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -29,7 +31,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/publicaciones")
-@SessionAttributes(value = "publicacion")
+@SessionAttributes(value = {"publicacion", "valorBusqueda"})
 public class PublicacionController {
 
     @Autowired
@@ -49,7 +51,7 @@ public class PublicacionController {
     @GetMapping(value = "/listar")
     public String listar(Pageable page, Model model) {
         model.addAttribute("titulo", "Listado de publicaciones");
-        Page<Publicacion> paginasPublicaciones = publicacionService.findAll(PageRequest.of(page.getPageNumber(),6));
+        Page<Publicacion> paginasPublicaciones = publicacionService.findAll(PageRequest.of(page.getPageNumber(), 6));
 //        Page<Publicacion> paginasPublicaciones = publicacionService.findAll(PageRequest.of(numPag, tamPag), Sort.by("titulo"));
         if (!paginasPublicaciones.hasContent()) {
             paginasPublicaciones = publicacionService.findAll(PageRequest.of(0, 6));
@@ -59,6 +61,44 @@ public class PublicacionController {
         model.addAttribute("publicaciones", paginasPublicaciones);
         return "listar-publicacion";
     }
+
+    @PostMapping(value = "/buscar")
+    public String buscar(@RequestParam(name = "valorBusqueda") String valorBusqueda, Model model) {
+        Publicacion publicacion = new Publicacion();
+        publicacion.setTitulo(valorBusqueda);
+        publicacion.setDisponibilidad(valorBusqueda);
+        model.addAttribute("titulo", "Listado de publicaciones");
+
+        Specification<Publicacion> especificacionBusqueda = PublicacionSpecification.publicacionSpecification(publicacion);
+        Page<Publicacion> paginasPublicaciones = publicacionService.findAll(especificacionBusqueda, PageRequest.of(0, 6));
+
+        if (!paginasPublicaciones.hasContent()) {
+            return "redirect:/publicaciones/listar";
+        }
+        //Lo agregamos a la sesion
+        model.addAttribute("valorBusqueda",valorBusqueda);
+        model.addAttribute("publicaciones", paginasPublicaciones);
+        return "listar-publicacion-busqueda";
+    }
+
+    @GetMapping(value = "/buscar")
+    public String buscar(Pageable pageable, @SessionAttribute(value = "valorBusqueda") String valorBusqueda, Model model) {
+        Publicacion publicacion = new Publicacion();
+        publicacion.setTitulo(valorBusqueda);
+        publicacion.setDisponibilidad(valorBusqueda);
+        model.addAttribute("titulo", "Listado de publicaciones");
+
+        Specification<Publicacion> especificacionBusqueda = PublicacionSpecification.publicacionSpecification(publicacion);
+        Page<Publicacion> paginasPublicaciones = publicacionService.findAll(especificacionBusqueda, PageRequest.of(pageable.getPageNumber(), 6));
+
+        if (!paginasPublicaciones.hasContent()) {
+            return "redirect:/publicaciones/listar";
+        }
+
+        model.addAttribute("publicaciones", paginasPublicaciones);
+        return "listar-publicacion-busqueda";
+    }
+
 
     @GetMapping("/crear")
     public String crear(Model model) {

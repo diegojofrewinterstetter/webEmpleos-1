@@ -21,7 +21,7 @@ import java.io.IOException;
 
 @Controller
 @RequestMapping(value = "/usuarios")
-@SessionAttributes(value = "usuario")
+@SessionAttributes(value = {"usuario","usuarioEdicion"})
 public class UsuarioController {
 
     @Autowired
@@ -105,7 +105,7 @@ public class UsuarioController {
     }
 
     @PostMapping(value = "/editar")
-    public String editar(@Valid Usuario usuario,
+    public String editar(@Valid @ModelAttribute(name = "usuarioEdicion") Usuario usuario,
                          BindingResult result, @RequestParam(value = "foto", required = false) MultipartFile foto, RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
@@ -130,9 +130,9 @@ public class UsuarioController {
             Autoridad autoridad = new Autoridad(3, "USUARIO");
             usuario.getAutoridades().add(autoridad);
         }
-        if (passwordEncoder.upgradeEncoding(usuario.getPassword())) {
+//        if (passwordEncoder.upgradeEncoding(usuario.getPassword())) {
             usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
-        }
+//        }
         usuarioService.save(usuario);
         redirectAttributes.addFlashAttribute("success", "El usuario ha sido creado con exito");
         return "redirect:/usuarios/listar";
