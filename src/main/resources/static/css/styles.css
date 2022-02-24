@@ -26,7 +26,7 @@ body {
 }
 
 #fondo{
-background-image:url("../images/rojito.png");
+background-image:url("../images/logoMi.png");
   background-repeat:no-repeat;
   background-position:center center;
   /*height:1800px;*/
@@ -533,4 +533,22 @@ top:100%;
 display:flex;
 justify-content:center;
 align-items:center;
+}
+
+.form-login{
+  position: absolute;
+  top: 25%;
+  left: 41%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-login input{
+  border-radius: 15px;
+  height: 50px;
+  width: 250px;
+  border: none;
+  font-size:25px;
 }
