@@ -26,4 +26,8 @@ public class Categoria implements Serializable{
 
     @OneToMany(cascade = CascadeType.MERGE,mappedBy = "categoria")
     private List<Publicacion> publicaciones = new ArrayList<>();
+
+    public Categoria(String nombre) {
+        this.nombre = nombre;
+    }
 }

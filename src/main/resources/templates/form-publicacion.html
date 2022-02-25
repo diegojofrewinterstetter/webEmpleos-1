@@ -35,7 +35,7 @@
                     <a class="btn btn-primary text-decoration-none" th:href="@{/categorias/listar/} + 'Otro'">Otro</a>
                 </div>
             </li>
-            <li sec:authorize="isAuthenticated()" th:if="${session.usuario != null}" class="nav_list btn-secondary"><a class="btn btn-light text-decoration-none"th:href="@{/usuarios/perfil/} + ${session.usuario.username}" th:text="'Perfil'">Perfil</a></li>
+            <li sec:authorize="isAuthenticated()" th:if="${session.usuario != null}" class="nav_list"><a class="btn btn-secondary text-decoration-none"th:href="@{/usuarios/perfil/} + ${session.usuario.username}" th:text="'Perfil'">Perfil</a></li>
             <li sec:authorize="isAuthenticated()" class="nav_list list-style-none"><a class="btn btn-secondary text-decoration-none"th:href="@{/logout}">Salir</a></li>
         </ul>
     </nav>

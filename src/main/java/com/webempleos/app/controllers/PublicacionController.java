@@ -1,6 +1,7 @@
 
 package com.webempleos.app.controllers;
 
+import com.webempleos.app.models.entity.Categoria;
 import com.webempleos.app.models.entity.Publicacion;
 import com.webempleos.app.models.entity.Usuario;
 import com.webempleos.app.service.interfaces.CategoriaService;
@@ -66,7 +67,8 @@ public class PublicacionController {
     public String buscar(@RequestParam(name = "valorBusqueda") String valorBusqueda, Model model) {
         Publicacion publicacion = new Publicacion();
         publicacion.setTitulo(valorBusqueda);
-        publicacion.setDisponibilidad(valorBusqueda);
+        publicacion.setDescripcion(valorBusqueda);
+        publicacion.setCategoria(new Categoria(valorBusqueda));
         model.addAttribute("titulo", "Listado de publicaciones");
 
         Specification<Publicacion> especificacionBusqueda = PublicacionSpecification.publicacionSpecification(publicacion);
@@ -85,7 +87,7 @@ public class PublicacionController {
     public String buscar(Pageable pageable, @SessionAttribute(value = "valorBusqueda") String valorBusqueda, Model model) {
         Publicacion publicacion = new Publicacion();
         publicacion.setTitulo(valorBusqueda);
-        publicacion.setDisponibilidad(valorBusqueda);
+        publicacion.setDescripcion(valorBusqueda);
         model.addAttribute("titulo", "Listado de publicaciones");
 
         Specification<Publicacion> especificacionBusqueda = PublicacionSpecification.publicacionSpecification(publicacion);
