@@ -453,3 +453,9 @@ footer{
 position:relative;
 bottom:0;
 }
+
+.center-content{
+display:flex;
+justify-content:center;
+align-items:center;
+}
