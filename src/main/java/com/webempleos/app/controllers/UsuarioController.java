@@ -170,4 +170,18 @@ public class UsuarioController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    @GetMapping(value = "/fotoPerfil/{username}")
+    public ResponseEntity<byte[]> fotoPerfil(@PathVariable(value = "username") String username) {
+        Usuario usuario = usuarioService.findByUsername(username).get();
+
+        if (usuario.getImagen() != null) {
+
+            HttpHeaders cabecera = new HttpHeaders();
+            cabecera.setContentType(MediaType.IMAGE_JPEG);
+
+            return new ResponseEntity<>(usuario.getImagen(), cabecera, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }

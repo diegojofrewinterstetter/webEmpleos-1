@@ -552,3 +552,116 @@ align-items:center;
   border: none;
   font-size:25px;
 }
+
+/*estilos del perfil*/
+ .perfil-usuario-body,
+.seccion-perfil-usuario {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+ .perfil-usuario-header {
+    margin-top: 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+}
+
+ .perfil-usuario-portada {
+    display: block;
+    position: relative;
+    width: 90%;
+    height: 17rem;
+    margin-top: 0px;
+    border-radius: 0 0 20px 20px;
+    background-image: url('https://www.eschoolnews.com/files/2020/01/coding-science.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.boton-portada {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: 0;
+    border-radius: 8px;
+    padding: 12px 25px;
+    background-color: rgba(0, 0, 0, .5);
+    color: #333232;
+    cursor: pointer;
+}
+
+.boton-portada i {
+    margin-right: 1rem;
+}
+
+ .perfil-usuario-avatar {
+    display: flex;
+    width: 180px;
+    height: 180px;
+    align-items: center;
+    justify-content: center;
+    border: 7px solid #fff;
+    background-color: #f30049;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgb(255, 255, 255);
+    position: absolute;
+    bottom: -40px;
+    left: calc(50% - 90px);
+    z-index: 1;
+    border-radius: 50%;
+    object-fit:cover;
+    overflow:hidden;
+}
+
+ .perfil-usuario-avatar img {
+    width: 100%;
+    position: relative;
+
+}
+
+ .perfil-usuario-body {
+    width: 70%;
+    position: relative;
+    max-width: 750px;
+}
+
+ .titulo {
+    display: block;
+    width: 100%;
+    font-size: 1.75em;
+}
+
+ .texto {
+    font-size: 0.95em;
+}
+
+ .perfil-usuario-footer,
+ .perfil-usuario-bio {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+    background-color: #f30049;
+    border: 2px solid #fff;
+    border-radius: 15px;
+    width: 100%;
+    margin-bottom:25px;
+}
+
+ .perfil-usuario-bio {
+ justify-content:center;
+}
+
+ .lista-datos {
+    width: 50%;
+    list-style: none;
+}
+
+ .lista-datos li {
+    padding: 5px 0;
+}
