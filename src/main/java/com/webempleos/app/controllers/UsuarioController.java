@@ -34,6 +34,7 @@ public class UsuarioController {
         model.addAttribute("titulo", "Listado de usuarios");
         model.addAttribute("usuarios", usuarioService.findAll());
 //        model.addAttribute("usuarios", usuarioService.findAll(Sort.by("apellido").ascending()));
+
         return "listar-usuarios";
     }
 
