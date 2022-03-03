@@ -1,8 +1,8 @@
 :root {
   /*Muy bueno*/
-  --primary: #f30049;
   --primary: #2a3ff5;
   --primary: #8c38ff;
+  --primary: #f30049;
   --light: #eeeeee;
   --dark: #227246;
   --dark: #69082e;
@@ -22,7 +22,7 @@ html {
 }
 
 body {
-  background-color: var(--light);
+  background-color: var(--dark);
 }
 
 #fondo{
