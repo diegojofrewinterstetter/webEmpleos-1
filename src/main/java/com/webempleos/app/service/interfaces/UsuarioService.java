@@ -8,8 +8,6 @@ import java.util.Optional;
 
 public interface UsuarioService {
 
-    List<Usuario> findAll(Sort sort);
-
     List<Usuario> findAll();
 
     Optional<Usuario> findByNombre(String nombre);

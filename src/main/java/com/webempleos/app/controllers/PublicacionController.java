@@ -67,31 +67,9 @@ public class PublicacionController {
         if (paginasPublicaciones.isEmpty()) {
             return "redirect:/publicaciones/listar";
         }
-        //Lo agregamos a la sesion
-        model.addAttribute("valorBusqueda",valorBusqueda);
         model.addAttribute("publicaciones", paginasPublicaciones);
         return "listar-publicacion-busqueda";
     }
-
-//    @GetMapping(value = "/buscar")
-//    public String buscar(Pageable pageable, @SessionAttribute(value = "valorBusqueda") String valorBusqueda, Model model) {
-//        Publicacion publicacion = new Publicacion();
-//        publicacion.setTitulo(valorBusqueda);
-//        publicacion.setDescripcion(valorBusqueda);
-//        publicacion.setCategoria(new Categoria(valorBusqueda));
-//        model.addAttribute("titulo", "Listado de publicaciones");
-//
-//        List<Publicacion> paginasPublicaciones = publicacionService.findAllByTituloOrDescripcion(publicacion.getTitulo(),publicacion.getDescripcion());
-//
-//        if (paginasPublicaciones.isEmpty()) {
-//            return "redirect:/publicaciones/listar";
-//        }
-//        //Lo agregamos a la sesion
-//        model.addAttribute("valorBusqueda",valorBusqueda);
-//        model.addAttribute("publicaciones", paginasPublicaciones);
-//        return "listar-publicacion-busqueda2";
-//    }
-
 
     @GetMapping("/crear")
     public String crear(Model model) {

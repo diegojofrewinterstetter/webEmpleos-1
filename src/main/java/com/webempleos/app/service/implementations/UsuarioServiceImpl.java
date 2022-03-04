@@ -24,11 +24,6 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
     private UsuarioRepository usuarioRepository;
 
     @Override
-    public List<Usuario> findAll(Sort sort) {
-        return usuarioRepository.findAll(sort);
-    }
-
-    @Override
     public List<Usuario> findAll() {
         return usuarioRepository.findAll();
     }
