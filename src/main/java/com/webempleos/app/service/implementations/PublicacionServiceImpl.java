@@ -34,8 +34,8 @@ public class PublicacionServiceImpl implements PublicacionService {
     }
 
     @Override
-    public Page<Publicacion> findAll(Specification<Publicacion> specification, Pageable pageable) {
-        return publicacionRepository.findAll(specification,pageable);
+    public List<Publicacion> findAllByTituloLikeOrDescripcionLike(String titulo, String descripcion) {
+        return publicacionRepository.findAllByTituloLikeOrDescripcionLike(titulo,descripcion);
     }
 
     @Override

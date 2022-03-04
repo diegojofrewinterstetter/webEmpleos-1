@@ -16,7 +16,7 @@ public interface PublicacionService {
 
     Page<Publicacion> findAll(Pageable pageable);
 
-    Page<Publicacion> findAll(Specification<Publicacion> specification,Pageable pageable);
+    List<Publicacion> findAllByTituloLikeOrDescripcionLike(String titulo, String descripcion);
 
     Optional<Publicacion> findById(Integer id);
 

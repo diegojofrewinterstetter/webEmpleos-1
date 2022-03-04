@@ -8,15 +8,13 @@ import com.webempleos.app.service.interfaces.CategoriaService;
 import com.webempleos.app.service.interfaces.PublicacionService;
 
 import java.io.IOException;
+import java.util.List;
 
 import com.webempleos.app.service.interfaces.UsuarioService;
-import com.webempleos.app.specification.PublicacionSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -32,7 +30,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/publicaciones")
-@SessionAttributes(value = {"publicacion", "valorBusqueda"})
+@SessionAttributes("publicacion")
 public class PublicacionController {
 
     @Autowired
@@ -41,13 +39,6 @@ public class PublicacionController {
     private UsuarioService usuarioService;
     @Autowired
     private CategoriaService categoriaService;
-
-//    @GetMapping("/listar")
-//    public String listar(Model model) {
-//        model.addAttribute("titulo", "Listado de publicaciones");
-//        model.addAttribute("publicaciones", publicacionService.findAll());
-//        return "listar-publicacion";
-//    }
 
     @GetMapping(value = "/listar")
     public String listar(Pageable page, Model model) {
@@ -71,10 +62,9 @@ public class PublicacionController {
         publicacion.setCategoria(new Categoria(valorBusqueda));
         model.addAttribute("titulo", "Listado de publicaciones");
 
-        Specification<Publicacion> especificacionBusqueda = PublicacionSpecification.publicacionSpecification(publicacion);
-        Page<Publicacion> paginasPublicaciones = publicacionService.findAll(especificacionBusqueda, PageRequest.of(0, 6));
+        List<Publicacion> paginasPublicaciones = publicacionService.findAllByTituloLikeOrDescripcionLike("%"+publicacion.getTitulo()+"%","%"+publicacion.getDescripcion()+"%");
 
-        if (!paginasPublicaciones.hasContent()) {
+        if (paginasPublicaciones.isEmpty()) {
             return "redirect:/publicaciones/listar";
         }
         //Lo agregamos a la sesion
@@ -83,23 +73,24 @@ public class PublicacionController {
         return "listar-publicacion-busqueda";
     }
 
-    @GetMapping(value = "/buscar")
-    public String buscar(Pageable pageable, @SessionAttribute(value = "valorBusqueda") String valorBusqueda, Model model) {
-        Publicacion publicacion = new Publicacion();
-        publicacion.setTitulo(valorBusqueda);
-        publicacion.setDescripcion(valorBusqueda);
-        model.addAttribute("titulo", "Listado de publicaciones");
-
-        Specification<Publicacion> especificacionBusqueda = PublicacionSpecification.publicacionSpecification(publicacion);
-        Page<Publicacion> paginasPublicaciones = publicacionService.findAll(especificacionBusqueda, PageRequest.of(pageable.getPageNumber(), 6));
-
-        if (!paginasPublicaciones.hasContent()) {
-            return "redirect:/publicaciones/listar";
-        }
-
-        model.addAttribute("publicaciones", paginasPublicaciones);
-        return "listar-publicacion-busqueda";
-    }
+//    @GetMapping(value = "/buscar")
+//    public String buscar(Pageable pageable, @SessionAttribute(value = "valorBusqueda") String valorBusqueda, Model model) {
+//        Publicacion publicacion = new Publicacion();
+//        publicacion.setTitulo(valorBusqueda);
+//        publicacion.setDescripcion(valorBusqueda);
+//        publicacion.setCategoria(new Categoria(valorBusqueda));
+//        model.addAttribute("titulo", "Listado de publicaciones");
+//
+//        List<Publicacion> paginasPublicaciones = publicacionService.findAllByTituloOrDescripcion(publicacion.getTitulo(),publicacion.getDescripcion());
+//
+//        if (paginasPublicaciones.isEmpty()) {
+//            return "redirect:/publicaciones/listar";
+//        }
+//        //Lo agregamos a la sesion
+//        model.addAttribute("valorBusqueda",valorBusqueda);
+//        model.addAttribute("publicaciones", paginasPublicaciones);
+//        return "listar-publicacion-busqueda2";
+//    }
 
 
     @GetMapping("/crear")
