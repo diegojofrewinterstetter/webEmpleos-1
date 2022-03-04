@@ -41,8 +41,7 @@
             </li>
             <li class="nav_list list-style-none dropdown">
             <span sec:authorize="isAuthenticated()" th:if="${session.usuario != null}"><a
-                    class="btn btn-secondary text-decoration-none"
-                    th:href="@{/usuarios/perfil/} + ${session.usuario.username}" th:text="'Perfil'">Perfil</a></span>
+                    class="btn btn-secondary text-decoration-none" href="#">Perfil</a></span>
             <div class="dropdown-content">
                 <span sec:authorize="isAuthenticated()" th:if="${session.usuario != null}"><a
                         class="btn btn-primary text-decoration-none"

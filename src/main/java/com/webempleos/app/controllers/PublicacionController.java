@@ -117,6 +117,7 @@ public class PublicacionController {
 
         if (result.hasErrors()) {
             model.addAttribute("titulo", "Formulario de la publicacion");
+            model.addAttribute("categorias", categoriaService.findAll());
             return "form-publicacion";
         }
 
