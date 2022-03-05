@@ -1,5 +1,6 @@
 package com.webempleos.app.service.implementations;
 
+import com.webempleos.app.models.entity.Autoridad;
 import com.webempleos.app.models.entity.Usuario;
 import com.webempleos.app.models.repository.UsuarioRepository;
 import com.webempleos.app.service.interfaces.UsuarioService;
@@ -13,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -61,9 +63,10 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
             throw new UsernameNotFoundException("Usuario no encontrado");
         }
 
-        List<GrantedAuthority> autoridades = usuario.getAutoridades().stream()
-                .map(autoridad -> new SimpleGrantedAuthority(autoridad.getAutoridad()))
-                .collect(Collectors.toList());
+        List<GrantedAuthority> autoridades = new ArrayList<>();
+        for (Autoridad aux : usuario.getAutoridades()) {
+            autoridades.add(new SimpleGrantedAuthority(aux.getAutoridad()));
+        }
 
         return new User(usuario.getUsername(), usuario.getPassword(), usuario.isAlta(), usuario.isAlta(), usuario.isAlta(), usuario.isAlta(), autoridades);
     }
