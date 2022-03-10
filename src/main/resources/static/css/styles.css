@@ -9,6 +9,11 @@
   --dark: #212121;
 }
 
+@font-face {
+  font-family: "Gentle";
+  src: url("MADE\ Gentle\ PERSONAL\ USE.otf");
+}
+
 html {
   box-sizing: border-box;
 }
@@ -29,7 +34,7 @@ body {
 background-image:url("../images/logoMi.png");
   background-repeat:no-repeat;
   background-position:center center;
-  height:1800px;
+  /*height:1800px;*/
   background-attachment:fixed;
   background-size:100vh ;
 }
@@ -47,6 +52,81 @@ h1 {
   margin-left: auto;
   margin-right: auto;
   margin-bottom:20px;
+}
+/*formulario busqueda*/
+.form-search{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-left: 20px;
+  margin-right: 13px;
+}
+
+.input-search{
+  height: 45px;
+  width: 0px;
+  padding: 0 20px;
+  color: var(--dark);
+  border-radius: 50px;
+  font-size: 20px;
+  transition: all .7s ease;
+}
+
+.icon{
+  position: absolute;
+  top:-4;
+  right: -4px;
+  width: 60px;
+  height: 60px;
+  background-color: var(--primary);
+  line-height: 60px;
+  border-radius: 50%;
+  text-align: center;
+  cursor: pointer;
+  border:none;
+  transition: .5s;
+}
+
+.icon span{
+  font-size: 25px;
+  color:var(--light);
+  line-height: 60px;
+  transition: all .7s ease;
+}
+
+.form-search:hover input{
+  width: 250px;
+}
+
+.form-search:hover .icon span{
+  transform: rotate(-360deg);
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
 }
 
 /*Botones*/
@@ -70,6 +150,7 @@ h1 {
   transition: color 0.5s ease, box-shadow 0.5s ease;
   /*Para poder mostrar el texto sobre el fondo blanco*/
   z-index: 1;
+    font-family: 'Gentle' !important;
 }
 
 .btn-light::before {
@@ -102,6 +183,7 @@ h1 {
   border-radius: 15px;
   transition: color 0.5s ease,box-shadow 0.5s ease;
   z-index: 1;
+    font-family: 'Gentle' !important;
 }
 
 .btn-dark::before {
@@ -133,6 +215,9 @@ h1 {
   border-radius: 15px;
   transition: color 0.5s ease;
   z-index: 1;
+    font-family: 'Gentle' !important;
+    font-weight:100;
+        line-height: 1;
   box-shadow: 0 5px 10px var(--primary);
 }
 
@@ -164,6 +249,9 @@ h1 {
   border-radius: 15px;
   transition: color 0.5s ease,box-shadow 0.5s ease;
   z-index: 1;
+    font-family: 'Gentle' !important;
+    font-weight:100;
+    line-height: 1;
   /*box-shadow: 0 5px 10px var(--light);*/
 }
 
@@ -292,12 +380,6 @@ h1 {
 }
 
 /*Formulario*/
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .form-register {
   width: 400px;
   background-color: var(--primary);
@@ -393,7 +475,7 @@ header {
 }
 
 ::selection {
-  color: white;
+  color: var(--primary);
   background-color: var(--dark);
 }
 
@@ -458,4 +540,171 @@ bottom:0;
 display:flex;
 justify-content:center;
 align-items:center;
+top:100%;
+}
+
+.nav-pagination{
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.form-login{
+  position: absolute;
+  top: 25%;
+  left: 41%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-login input{
+  border-radius: 15px;
+  height: 50px;
+  width: 250px;
+  border: none;
+  font-size:25px;
+}
+
+/*estilos del perfil*/
+ .perfil-usuario-body,
+.seccion-perfil-usuario {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+ .perfil-usuario-header {
+    margin-top: 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+}
+
+ .perfil-usuario-portada {
+    display: block;
+    position: relative;
+    width: 90%;
+    height: 17rem;
+    margin-top: 0px;
+    border-radius: 0 0 20px 20px;
+    background-image: url('https://www.eschoolnews.com/files/2020/01/coding-science.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.boton-portada {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: 0;
+    border-radius: 8px;
+    padding: 12px 25px;
+    background-color: rgba(0, 0, 0, .5);
+    color: #333232;
+    cursor: pointer;
+}
+
+.boton-portada i {
+    margin-right: 1rem;
+}
+
+ .perfil-usuario-avatar {
+    display: flex;
+    width: 180px;
+    height: 180px;
+    align-items: center;
+    justify-content: center;
+    border: 7px solid var(--light);
+    background-color: var(--light);
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgb(255, 255, 255);
+    position: absolute;
+    bottom: -40px;
+    left: calc(50% - 90px);
+    z-index: 1;
+    border-radius: 50%;
+    object-fit:cover;
+    overflow:hidden;
+}
+
+ .perfil-usuario-avatar img {
+    width: 100%;
+    height:100%
+    position: relative;
+}
+
+ .perfil-usuario-body {
+    width: 70%;
+    position: relative;
+    max-width: 750px;
+}
+
+ .titulo {
+    display: block;
+    width: 100%;
+    font-size: 1.75em;
+}
+
+ .texto {
+    font-size: 0.95em;
+}
+
+ .perfil-usuario-footer,
+ .perfil-usuario-bio {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+    background-color: #f30049;
+    border: 2px solid #fff;
+    border-radius: 15px;
+    width: 100%;
+    margin-bottom:25px;
+}
+
+ .perfil-usuario-bio {
+ justify-content:center;
+}
+
+ .lista-datos {
+    width: 50%;
+    list-style: none;
+}
+
+ .lista-datos li {
+    padding: 5px 0;
+}
+/*Inicio*/
+.maintext{
+    font-size: 80px;
+  font-family: 'Gentle' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+    font-weight: 200;
+    text-decoration: underline 5px;
+}
+.secondarytext{
+  font-family: 'Gentle' !important;
+    font-size: 45px;
+    text-decoration: underline 2px;
+}
+.terciarytext{
+      font-family: 'Gentle' !important;
+    font-size: 30px;
+    text-decoration: underline 2px;
+}
+
+/*Carrusel*/
+.carrusell-inicio{
+    height: 400px;
+    display: block !important;
+
 }

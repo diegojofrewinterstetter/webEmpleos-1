@@ -35,7 +35,16 @@
                     <a class="btn btn-primary text-decoration-none" th:href="@{/categorias/listar/} + 'Otro'">Otro</a>
                 </div>
             </li>
-            <li sec:authorize="isAuthenticated()" th:if="${session.usuario != null}" class="nav_list btn-secondary"><a class="btn btn-light text-decoration-none"th:href="@{/usuarios/perfil/} + ${session.usuario.username}" th:text="'Perfil'">Perfil</a></li>
+            <li class="nav_list list-style-none dropdown">
+            <span sec:authorize="isAuthenticated()" th:if="${session.usuario != null}"><a
+                    class="btn btn-secondary text-decoration-none" href="#">Perfil</a></span>
+                <div class="dropdown-content">
+                <span sec:authorize="isAuthenticated()" th:if="${session.usuario != null}"><a
+                        class="btn btn-primary text-decoration-none"
+                        th:href="@{/usuarios/perfil/} + ${session.usuario.username}" th:text="'Ver Perfil'">Ver Perfil</a></span>
+                    <a class="btn btn-primary text-decoration-none" th:href="@{/usuarios/editar/} + ${session.usuario.username}">Editar
+                        Perfil</a>
+                </div>
             <li sec:authorize="isAuthenticated()" class="nav_list list-style-none"><a class="btn btn-secondary text-decoration-none"th:href="@{/logout}">Salir</a></li>
         </ul>
     </nav>
@@ -63,7 +72,7 @@
         <div th:if="${#fields.hasErrors('disponibilidad')}"
              th:errors="*{disponibilidad}" th:errorclass="'alert alert-danger'"></div>
 
-        <label class="ligth" for="categoria">Categoria</label>
+        <label class="light" for="categoria">Categoria</label>
         <select id="categoria" th:field="*{categoria}">
             <option th:each="categoria : ${categorias}" th:value="${categoria.id}" th:text="${categoria.nombre}"></option>
         </select>

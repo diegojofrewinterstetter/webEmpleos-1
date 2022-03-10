@@ -11,7 +11,9 @@ public interface CategoriaService {
     List<Categoria> findAll();
     
     Optional<Categoria> findById(Integer id);
-    
+
+    Optional<Categoria> findByNombre(String nombre);
+
     void deleteById(Integer id);
     
     void save(Categoria categoria);

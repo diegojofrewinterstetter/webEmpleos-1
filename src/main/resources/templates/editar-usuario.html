@@ -35,14 +35,23 @@
                     <a class="btn btn-primary text-decoration-none" th:href="@{/categorias/listar/} + 'Otro'">Otro</a>
                 </div>
             </li>
-            <li sec:authorize="isAuthenticated()" th:if="${session.usuario != null}" class="nav_list list-style-none"><a class="btn btn-secondary text-decoration-none"th:href="@{/usuarios/perfil/} + ${session.usuario.username}" th:text="'Perfil'">Perfil</a></li>
+            <li class="nav_list list-style-none dropdown">
+            <span sec:authorize="isAuthenticated()" th:if="${session.usuario != null}"><a
+                    class="btn btn-secondary text-decoration-none" href="#">Perfil</a></span>
+                <div class="dropdown-content">
+                <span sec:authorize="isAuthenticated()" th:if="${session.usuario != null}"><a
+                        class="btn btn-primary text-decoration-none"
+                        th:href="@{/usuarios/perfil/} + ${session.usuario.username}" th:text="'Ver Perfil'">Ver Perfil</a></span>
+                    <a class="btn btn-primary text-decoration-none" th:href="@{/usuarios/editar/} + ${session.usuario.username}">Editar
+                        Perfil</a>
+                </div>
             <li sec:authorize="isAuthenticated()" class="nav_list list-style-none"><a class="btn btn-secondary text-decoration-none"th:href="@{/logout}">Salir</a></li>
         </ul>
     </nav>
 </header>
 <h1 th:text="${titulo}"></h1>
 <main class="container">
-    <form class="form-register" th:action="@{/usuarios/editar}" th:object="${usuario}" method="POST" enctype="multipart/form-data">
+    <form class="form-register" th:action="@{/usuarios/editar}" th:object="${usuarioEdicion}" method="POST" enctype="multipart/form-data">
         <label class="light" for="nombre">Nombre:</label>
         <input id="nombre" type="text" th:field="*{nombre}">
         <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"

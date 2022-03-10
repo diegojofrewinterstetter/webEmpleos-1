@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
@@ -26,6 +25,15 @@
         </ul>
     </nav>
 </header>
+
+<h1 class="text-align-center maintext light">Miworks</h1>
+    <h2 class="text-align-center secondarytext light">¡ENCONTRAR TRABAJO NUNCA FUE TAN FACIL!</h2>
+    <h2 class="text-align-center terciarytext light">Registrate contando tus mejores habilidades y aplicá a la oferta de trabajo que mejor se amolde a tu perfil.</h2>
+    <br>
+<!--    <span class="center-content">-->
+<!--            <span sec:authorize="isAnonymous()" class="nav_list list-style-none"><a class="btn btn-secondary text-decoration-none"th:href="@{/usuarios/crear}">Registrarse</a></span>-->
+<!--        </span>-->
+<h2 class="text-aling-center secondarytext light">Algunas de nuestras categorias:</h2>
 
 <div id="carouselExampleCaptions" class="carousel slide relative" data-bs-ride="carousel">
     <div class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
@@ -53,7 +61,7 @@
     <div class="carousel-inner relative w-full overflow-hidden">
         <div class="carousel-item active relative float-left w-full">
             <img
-                    src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg"
+                    src="/images/foto1.png"
                     class="block w-full"
                     alt="..."
             />
@@ -64,7 +72,7 @@
         </div>
         <div class="carousel-item relative float-left w-full">
             <img
-                    src="https://mdbootstrap.com/img/Photos/Slides/img%20(22).jpg"
+                    src="/images/foto2.png"
                     class="block w-full"
                     alt="..."
             />
@@ -75,7 +83,7 @@
         </div>
         <div class="carousel-item relative float-left w-full">
             <img
-                    src="https://mdbootstrap.com/img/Photos/Slides/img%20(23).jpg"
+                    src="/images/foto4.png"
                     class="block w-full"
                     alt="..."
             />
@@ -104,19 +112,31 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
-<span class="center-content">
-    <span sec:authorize="isAnonymous()" class="nav_list list-style-none"><a class="btn btn-secondary text-decoration-none"th:href="@{/usuarios/crear}">Registrarse</a></span>
-</span>
 
+<h2 class="text-aling-center secondarytext light">Ultimas Publicaciones:</h2>
+<br>
+<br>
 <main class="container">
     <article class="card">
         <div class="face-primary front-primary">
-            <img src="/images/logoMi.png" alt="Foto">
+            <img src="/images/uala.png" alt="Foto">
             <h3 class="text-align-center" >Programacion</h3>
         </div>
         <div class="face-primary back-primary">
             <h3 class="text-align-center">Programacion</h3>
-            <p class="text-align-center">adasdfdsafasfafdafsdaf</p>
+            <p class="text-align-center">Requisitos:
+
+                · Nivel de inglés: intermedio o superior
+
+                · +3 años de experiencia en desarrollo IU con conocimientos profundos en HTML5, CSS3 y Javascript.
+
+                · Conocimientos profundos en ASP.NET, C#, MVC, ASP.Net Core
+
+                · Conocimientos en API y Web Services.
+
+                · Conocimientos profundos en SQL Server.
+
+            </p>
             <div class="link">
                 <a class="btn btn-light text-decoration-none">Info</a>
             </div>
@@ -124,12 +144,20 @@
     </article>
     <article class="card">
         <div class="face-primary front-primary">
-            <img src="/images/logoMi.png" alt="Foto">
+            <img src="/images/mercado-libre.jpg" alt="Foto">
             <h3 class="text-align-center" >Educacion</h3>
         </div>
         <div class="face-primary back-primary">
             <h3 class="text-align-center">Educacion</h3>
-            <p class="text-align-center">adasdfdsafasfafdafsdaf</p>
+            <p class="text-align-center">                        · Nivel de inglés: intermedio o superior
+
+                · Manejo de habilidades blandas.
+
+                · Conocimientos en educacion relacionada a la programacion.
+
+                · Conocimientos en API y Web Services.
+
+                · Conocimientos profundos en SQL Server.</p>
             <div class="link">
                 <a class="btn btn-light text-decoration-none">Info</a>
             </div>
@@ -137,18 +165,27 @@
     </article>
     <article class="card">
         <div class="face-primary front-primary">
-            <img src="/images/logoMi.png" alt="Foto">
+            <img src="/images/acc.jpg" alt="Foto">
             <h3 class="text-align-center" >Finanzas</h3>
         </div>
         <div class="face-primary back-primary">
             <h3 class="text-align-center">Finanzas</h3>
-            <p class="text-align-center">adasdfdsafasfafdafsdaf</p>
+            <p class="text-align-center">· Nivel de inglés: intermedio o superior
+
+                · +3 años de experiencia en Finanzas.
+
+                · Conocimientos profundos Sobre contabilidad
+
+                · Conocimientos Liquidacion de sueldos.
+
+                · Conocimientos profundos en Excel y SQL.</p>
             <div class="link">
                 <a class="btn btn-light text-decoration-none">Info</a>
             </div>
         </div>
     </article>
 </main>
+
 <footer>
     <div class="footer-up">
         <div>
@@ -179,6 +216,7 @@
         <a class="light text-decoration-none" href="#">Terminos y Condiciones</a>
     </div>
 </footer>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

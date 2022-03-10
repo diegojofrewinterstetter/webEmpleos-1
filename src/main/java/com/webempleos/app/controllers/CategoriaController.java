@@ -1,13 +1,12 @@
 package com.webempleos.app.controllers;
 
 import com.webempleos.app.models.entity.Publicacion;
+import com.webempleos.app.service.interfaces.CategoriaService;
 import com.webempleos.app.service.interfaces.PublicacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,6 +15,8 @@ import java.util.List;
 public class CategoriaController {
 
     @Autowired
+    private CategoriaService categoriaService;
+    @Autowired
     private PublicacionService publicacionService;
 
     @GetMapping(value = "/listar/{nombreCategoria}")
@@ -23,10 +24,10 @@ public class CategoriaController {
         List<Publicacion> publicaciones = publicacionService.findAllByCategoriaNombre(nombreCategoria);
         publicaciones.forEach(publicacion -> System.out.println(publicacion.getTitulo()));
         model.addAttribute("titulo", "Listado de publicaciones");
-        if(publicaciones.isEmpty()){
+        if (publicaciones.isEmpty()) {
             return "redirect:/publicaciones/listar";
         }
         model.addAttribute("publicaciones", publicaciones);
-        return "listar-publicacion";
+        return "listar-publicacion-categoria";
     }
 }

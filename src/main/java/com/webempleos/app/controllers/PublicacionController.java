@@ -1,15 +1,20 @@
 
 package com.webempleos.app.controllers;
 
+import com.webempleos.app.models.entity.Categoria;
 import com.webempleos.app.models.entity.Publicacion;
 import com.webempleos.app.models.entity.Usuario;
 import com.webempleos.app.service.interfaces.CategoriaService;
 import com.webempleos.app.service.interfaces.PublicacionService;
 
 import java.io.IOException;
+import java.util.List;
 
 import com.webempleos.app.service.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,7 +30,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/publicaciones")
-@SessionAttributes(value = "publicacion")
+@SessionAttributes("publicacion")
 public class PublicacionController {
 
     @Autowired
@@ -35,11 +40,35 @@ public class PublicacionController {
     @Autowired
     private CategoriaService categoriaService;
 
-    @GetMapping("/listar")
-    public String listar(Model model) {
+    @GetMapping(value = "/listar")
+    public String listar(Pageable page, Model model) {
         model.addAttribute("titulo", "Listado de publicaciones");
-        model.addAttribute("publicaciones", publicacionService.findAll());
+        Page<Publicacion> paginasPublicaciones = publicacionService.findAll(PageRequest.of(page.getPageNumber(), 6));
+
+        if (!paginasPublicaciones.hasContent()) {
+            paginasPublicaciones = publicacionService.findAll(PageRequest.of(0, 6));
+            model.addAttribute("publicaciones", paginasPublicaciones);
+            return "listar-publicacion";
+        }
+        model.addAttribute("publicaciones", paginasPublicaciones);
         return "listar-publicacion";
+    }
+
+    @PostMapping(value = "/buscar")
+    public String buscar(@RequestParam(name = "valorBusqueda") String valorBusqueda, Model model) {
+        Publicacion publicacion = new Publicacion();
+        publicacion.setTitulo(valorBusqueda);
+        publicacion.setDescripcion(valorBusqueda);
+        publicacion.setCategoria(new Categoria(valorBusqueda));
+        model.addAttribute("titulo", "Listado de publicaciones");
+
+        List<Publicacion> paginasPublicaciones = publicacionService.findAllByTituloLikeOrDescripcionLike("%"+publicacion.getTitulo()+"%","%"+publicacion.getDescripcion()+"%");
+
+        if (paginasPublicaciones.isEmpty()) {
+            return "redirect:/publicaciones/listar";
+        }
+        model.addAttribute("publicaciones", paginasPublicaciones);
+        return "listar-publicacion-busqueda";
     }
 
     @GetMapping("/crear")
@@ -57,6 +86,7 @@ public class PublicacionController {
 
         if (result.hasErrors()) {
             model.addAttribute("titulo", "Formulario de la publicacion");
+            model.addAttribute("categorias", categoriaService.findAll());
             return "form-publicacion";
         }
 

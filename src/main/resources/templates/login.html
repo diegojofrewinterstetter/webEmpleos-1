@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="shortcut icon" href="/images/logoMi.png">
+    <title>MIWORKS</title>
+</head>
+<body id="fondo" class="container">
+<form class="form-login"th:action="@{/login}" method="POST">
+    <label class="light" for="username">Nombre de Usuario : </label>
+    <input class="input-login" id="username" type="text" name="username">
+    <label class="light" for="password">Contraseña : </label>
+    <input class="input-login" id="password" type="password" name="password">
+    <button class="btn btn-light "type="submit">INGRESAR</button>
+</form>
+</body>
+</html>

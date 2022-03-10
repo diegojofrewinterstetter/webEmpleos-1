@@ -33,14 +33,48 @@
                     <a class="btn btn-primary text-decoration-none" th:href="@{/categorias/listar/} + 'Otro'">Otro</a>
                 </div>
             </li>
-            <li sec:authorize="isAuthenticated()" th:if="${session.usuario != null}" class="nav_list list-style-none"><a class="btn btn-secondary text-decoration-none"th:href="@{/usuarios/perfil/} + ${session.usuario.username}" th:text="'Perfil'">Perfil</a></li>
+            <li class="nav_list list-style-none dropdown">
+            <span sec:authorize="isAuthenticated()" th:if="${session.usuario != null}"><a
+                    class="btn btn-secondary text-decoration-none" href="#">Perfil</a></span>
+                <div class="dropdown-content">
+                <span sec:authorize="isAuthenticated()" th:if="${session.usuario != null}"><a
+                        class="btn btn-primary text-decoration-none"
+                        th:href="@{/usuarios/perfil/} + ${session.usuario.username}" th:text="'Ver Perfil'">Ver Perfil</a></span>
+                    <a class="btn btn-primary text-decoration-none" th:href="@{/usuarios/editar/} + ${session.usuario.username}">Editar
+                        Perfil</a>
+                </div>
             <li sec:authorize="isAuthenticated()" class="nav_list list-style-none"><a class="btn btn-secondary text-decoration-none"th:href="@{/logout}">Salir</a></li>
         </ul>
     </nav>
 </header>
-<h1 class="text-align-center light" th:text="${usuarioInfo.username}"></h1>
+<!--<h1 class="text-align-center light" th:text="${usuarioInfo.username}"></h1>-->
+<section class="seccion-perfil-usuario">
+    <div class="perfil-usuario-header">
+        <div class="perfil-usuario-portada">
+            <div class="perfil-usuario-avatar">
+                <img th:if="${usuarioInfo != null}"
+                     th:src="${'/usuarios/imagen/' + usuarioInfo.id}" alt="Foto perfil">
+            </div>
+            <button type="button" class="boton-portada">
+                <i class="far fa-image light"></i> Cambiar fondo
+            </button>
+        </div>
+    </div>
+    <div class="perfil-usuario-body">
+        <div class="perfil-usuario-bio light">
+            <h1 class="text-align-center light" th:text="${usuarioInfo.username}"></h1>
+        </div>
+        <div class="perfil-usuario-footer">
+            <ul class="lista-datos light">
+                <li><span th:text="'Nombre: ' + ${usuarioInfo.nombre}"></span></li>
+                <li><span th:text="'Apellido: ' + ${usuarioInfo.apellido}"></span></li>
+                <li><span th:text="'Email: ' + ${usuarioInfo.email}"></span></li>
+            </ul>
+        </div>
+    </div>
+</section>
+<h2 class="text-align-center light" th:text="'Mis publicaciones - ' + ${cantidad}"></h2>
 
-<h2 class="light" th:text="'Publicaciones - ' + ${cantidad}"></h2>
 <main class="container">
     <article class="card" th:if="${usuarioInfo.publicaciones != null}" th:each="publicacion : ${usuarioInfo.publicaciones}">
         <div class="face-primary front-primary">

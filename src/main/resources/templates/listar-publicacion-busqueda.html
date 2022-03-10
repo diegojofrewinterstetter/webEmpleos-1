@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="shortcut icon" href="/images/logoMi.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <title>MIWORKS</title>
+</head>
+
+<body id="fondo">
+<header>
+    <nav class="nav">
+        <img class="nav_img" src="/images/logoMi.png" alt="Logo">
+        <ul>
+            <li class="nav_list list-style-none"><a class="btn btn-secondary text-decoration-none"
+                                                    th:href="@{/}">Inicio</a></li>
+            <li class="nav_list list-style-none"><a class="btn btn-secondary text-decoration-none"
+                                                    th:href="@{/usuarios/listar}">Usuarios</a></li>
+            <li>
+                <form class="form-search" th:action="@{/publicaciones/buscar}" method="POST">
+                    <input class="input-search" type="text" name="valorBusqueda" placeholder="Buscar">
+                    <button type="submit" class="icon">
+                            <span class="material-icons material-icons-outlined">
+                                search
+                            </span>
+                    </button>
+                </form>
+            </li>
+            <li class="nav_list list-style-none dropdown">
+                <a class="btn btn-primary text-decoration-none" href="#">Publicaciones</a>
+                <div class="dropdown-content">
+                    <a class="btn btn-primary text-decoration-none text-align-center"
+                       th:href="@{/publicaciones/listar}">Ver Todas</a>
+                    <a class="btn btn-primary text-decoration-none text-align-center" th:href="@{/publicaciones/crear}">Crear</a>
+                </div>
+            </li>
+            <li class="nav_list list-style-none dropdown">
+                <a class="btn btn-secondary text-decoration-none" href="#">Categorias</a>
+                <div class="dropdown-content">
+                    <a class="btn btn-primary text-decoration-none" th:href="@{/categorias/listar/} + 'Programacion'">Programacion</a>
+                    <a class="btn btn-primary text-decoration-none" th:href="@{/categorias/listar/} + 'Educacion'">Educacion</a>
+                    <a class="btn btn-primary text-decoration-none" th:href="@{/categorias/listar/} + 'Alimentacion'">Alimentacion</a>
+                    <a class="btn btn-primary text-decoration-none"
+                       th:href="@{/categorias/listar/} + 'Fitnes'">Fitnes</a>
+                    <a class="btn btn-primary text-decoration-none" th:href="@{/categorias/listar/} + 'Finanzas'">Finanzas</a>
+                    <a class="btn btn-primary text-decoration-none" th:href="@{/categorias/listar/} + 'Otro'">Otro</a>
+                </div>
+            </li>
+            <li class="nav_list list-style-none dropdown">
+            <span sec:authorize="isAuthenticated()" th:if="${session.usuario != null}"><a
+                    class="btn btn-secondary text-decoration-none" href="#">Perfil</a></span>
+                <div class="dropdown-content">
+                <span sec:authorize="isAuthenticated()" th:if="${session.usuario != null}"><a
+                        class="btn btn-primary text-decoration-none"
+                        th:href="@{/usuarios/perfil/} + ${session.usuario.username}" th:text="'Ver Perfil'">Ver Perfil</a></span>
+                    <a class="btn btn-primary text-decoration-none" th:href="@{/usuarios/editar/} + ${session.usuario.username}">Editar
+                        Perfil</a>
+                </div>
+            <li sec:authorize="isAuthenticated()" class="nav_list list-style-none"><a
+                    class="btn btn-secondary text-decoration-none" th:href="@{/logout}">Salir</a></li>
+        </ul>
+    </nav>
+</header>
+<h1 class="text-align-center" th:text="${titulo}"></h1>
+<main class="container">
+    <article class="card" th:each="publicacion : ${publicaciones}">
+        <div class="face-primary front-primary">
+            <img th:if="${publicacion.imagen != null}" th:src="${'/publicaciones/imagen/' + publicacion.id}" alt="Foto">
+            <h3 class="text-align-center" th:text="${publicacion.titulo}"></h3>
+        </div>
+        <div class="face-primary back-primary">
+            <h3 class="text-align-center" th:text="${publicacion.titulo}"></h3>
+            <p class="text-align-center" th:text="${publicacion.descripcion}"></p>
+            <div class="link">
+                <a class="btn btn-light text-decoration-none" th:href="@{/usuarios/info/} + ${publicacion.usuario.id}">Info</a>
+            </div>
+        </div>
+    </article>
+</main>
+
+<footer>
+    <div class="footer-up">
+        <div>
+            <h3>Mas informacion de la compania</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aperiam, atque doloremque earum et
+                exercitationem id, illo ipsam libero necessitatibus neque odit placeat praesentium, quaerat quas sequi
+                totam veritatis voluptate?</p>
+        </div>
+        <div>
+            <h3>Redes Sociales</h3>
+            <p>Instagram : MiWorks@gmail.com</p>
+            <p>Twitter : MiWorks@gmail.com</p>
+            <p>Facebook : MiWorks@gmail.com</p>
+            <p>Whatsapp : 343212312</p>
+            <p>Telegram : MiWorks</p>
+        </div>
+        <div>
+            <h3>Informacion de Contacto</h3>
+            <p>Telefono de Contacto : 192831231</p>
+            <p>Email de Contacto : MiWorks@gmail.com</p>
+        </div>
+
+    </div>
+    <div class="footer-down">
+        <p>© 2022 Todos los Derechos Reservados</p>
+        <a class="light text-decoration-none" href="#">Informacion Compañia </a>
+        <a class="light text-decoration-none" href="#">Privacion y Politica </a>
+        <a class="light text-decoration-none" href="#">Terminos y Condiciones</a>
+    </div>
+</footer>
+
+</body>
+</html>
